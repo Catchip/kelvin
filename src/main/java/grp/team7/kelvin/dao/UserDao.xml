@@ -84,7 +84,7 @@
     <select id="findShopCollectById" parameterType="java.lang.Integer"
         resultType="grp.team7.kelvin.entity.Shop">
         SELECT
-            *
+           *
         FROM
             shop_collect
         WHERE user_id = #{id}

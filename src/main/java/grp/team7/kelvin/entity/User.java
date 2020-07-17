@@ -3,7 +3,7 @@ package grp.team7.kelvin.entity;
 import java.util.Date;
 import grp.team7.kelvin.utils.*;
 
-public class User{
+public class User {
 
     private Integer userId;// 用户ID
     private String userName;// 用户姓名
@@ -23,7 +23,7 @@ public class User{
     }
 
     public User(String userName, Integer userSex, String userAccount, String userPassword, String userMail,
-            String userTelephone) {
+                String userTelephone) {
         this.userName = userName;
         this.userSex = userSex;
         this.userAccount = userAccount;
@@ -65,15 +65,15 @@ public class User{
     public Integer getUserSex() {
         return userSex;
     }
-    
+
     public String getUserSexStr() {
-         switch (userSex){
-         case 0:
-             return "女";
-         case 1:
-             return "男";
-     }
-     return "错误";
+        switch (userSex) {
+        case 0:
+            return "女";
+        case 1:
+            return "男";
+        }
+        return "错误";
     }
 
     public void setUserSex(Integer userSex) {
@@ -151,8 +151,7 @@ public class User{
     @Override
     public String toString() {
         return "User [userId=" + userId + ", userName=" + userName + ", userSex=" + userSex + ", userAccount="
-                + userAccount + ", userPassword=" + userPasswordsha256 + ", userMail=" + userMail + ", userTelephone="
-                + userTelephone + ", userCreatetime=" + userCreatetime + ", userUpdatetime=" + userUpdatetime + "]";
+               + userAccount + ", userPassword=" + userPasswordsha256 + ", userMail=" + userMail + ", userTelephone="
+               + userTelephone + ", userCreatetime=" + userCreatetime + ", userUpdatetime=" + userUpdatetime + "]";
     }
 }
-
