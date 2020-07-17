@@ -84,7 +84,7 @@
     <select id="findShopCollectById" parameterType="java.lang.Integer"
         resultType="grp.team7.kelvin.entity.Shop">
         SELECT
-            *
+           *
         FROM
             shop
         WHERE shop_id IN ( SELECT shop_id FROM shopcollect WHERE user_id=#{userId}   )
