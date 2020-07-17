@@ -39,10 +39,21 @@ public class UserService {
         return userdao.deleteUser(id);
     }
 
+    public List<User> getAllUser(){
+        return userdao.findAll();
+    }
+
     public List<Dish> getDishCollect(Integer user_id){
         return userdao.findDishCollectById(user_id);        
     }
 
+    public List<Shop> getShopCollect(Integer user_id){
+        return userdao.findShopCollectById(user_id);        
+    }
+    
+    public User checkUser(String userAccount, String password){
+        return userdao.checkUserPassword(userAccount, SHA256Util.stringToSHA256(password));
+    }
 
 
 }

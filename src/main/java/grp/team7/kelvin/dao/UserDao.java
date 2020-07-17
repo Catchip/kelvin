@@ -17,5 +17,5 @@ public interface UserDao {
     
     public List<Dish> findDishCollectById(Integer id);
     public List<Shop> findShopCollectById(Integer id);
-    public User checkUserPassword(String userName, String userPasswordsha236);
+    public User checkUserPassword(String userAccount, String userPasswordsha236);
 }
