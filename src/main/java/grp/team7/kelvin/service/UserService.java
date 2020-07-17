@@ -3,9 +3,12 @@ package grp.team7.kelvin.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Date;
+import java.util.List;
 
 import grp.team7.kelvin.dao.UserDao;
 import grp.team7.kelvin.entity.User;
+import grp.team7.kelvin.entity.Dish;
+import grp.team7.kelvin.entity.Shop;
 import grp.team7.kelvin.utils.SHA256Util;
 
 @Service
@@ -34,6 +37,10 @@ public class UserService {
 
     public int deleteUser(Integer id){
         return userdao.deleteUser(id);
+    }
+
+    public List<Dish> getDishCollect(Integer user_id){
+        return userdao.findDishCollectById(user_id);        
     }
 
 

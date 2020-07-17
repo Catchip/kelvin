@@ -18,8 +18,6 @@ public class Shop{
     private Time startTime; //每日开张时间
     private Time endTime; //每日打烊日期
         
-    public Shop(){
-    }
 
     public Integer getShopId() {
         return shopId;

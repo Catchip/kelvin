@@ -66,15 +66,6 @@ public class User{
         return userSex;
     }
     
-    public String getUserSexStr() {
-         switch (userSex){
-         case 0:
-             return "女";
-         case 1:
-             return "男";
-     }
-     return "错误";
-    }
 
     public void setUserSex(Integer userSex) {
         this.userSex = userSex;
@@ -120,9 +111,6 @@ public class User{
         this.userCreatetime = userCreatetime;
     }
 
-    public Date getUserUpdatetime() {
-        return userUpdatetime;
-    }
 
     public void setUserUpdatetime(Date userUpdatetime) {
         this.userUpdatetime = userUpdatetime;
@@ -135,7 +123,12 @@ public class User{
         return null;
     }
 
-    public void setUserCreatetimeStr(String userCreatetimeStr) {
+    public void setUserPicture(String userPicture) {
+        this.userPicture = userPicture;
+    }
+
+    public String getUserPicture() {
+        return userPicture;
     }
 
     public String getUserUpdatetimeStr() {
@@ -145,14 +138,9 @@ public class User{
         return null;
     }
 
-    public void setUserUpdatetimeStr(String userUpdatetimeStr) {
+    public Date getUserUpdatetime() {
+        return userUpdatetime;
     }
 
-    @Override
-    public String toString() {
-        return "User [userId=" + userId + ", userName=" + userName + ", userSex=" + userSex + ", userAccount="
-                + userAccount + ", userPassword=" + userPasswordsha256 + ", userMail=" + userMail + ", userTelephone="
-                + userTelephone + ", userCreatetime=" + userCreatetime + ", userUpdatetime=" + userUpdatetime + "]";
-    }
 }
 

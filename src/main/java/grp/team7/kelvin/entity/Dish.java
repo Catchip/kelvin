@@ -11,9 +11,14 @@ public class Dish {
     private String dishPicture; //图片路径
     private Boolean status; //上架或下架
 
-    public Dish() {
-        
+    public String getDishName() {
+        return dishName;
     }
+
+    public void setDishName(String dishName) {
+        this.dishName = dishName;
+    }
+
     
     public Float getPrice() {
         return price;
@@ -34,6 +39,10 @@ public class Dish {
         return shopId;
     }
 
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
+
     public String getDishPicture() {
         return dishPicture;
     }
@@ -42,11 +51,11 @@ public class Dish {
         this.dishPicture = dishPicture;
     }
 
-    public void setIsOn(Boolean status) {
+    public void setStaus(Boolean status) {
         this.status = status;
     }
 
-    public Boolean getIsOn() {
+    public Boolean getStaus() {
         return status;
     }
     public void setDishClass(String dishClass) {

@@ -86,8 +86,8 @@
         SELECT
             *
         FROM
-            shop_collect
-        WHERE user_id = #{id}
+            shop
+        WHERE shop_id IN ( SELECT shop_id FROM shopcollect WHERE user_id=#{userId}   )
     </select>
 
     <select id="findDishCollectById" parameterType="java.lang.Integer"
@@ -95,8 +95,8 @@
         SELECT
             *
         FROM
-            dish_collect
-        WHERE user_id = #{id}
+            dish
+        WHERE dish_id IN ( SELECT dish_id FROM dishcollect WHERE user_id=#{userId}   )
     </select>
 
     <select id="checkUserPassword" resultType="grp.team7.kelvin.entity.User">
