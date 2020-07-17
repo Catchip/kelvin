@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="grp.team7.kelvin.dao.DishDao">
+	<select id="findAllWithShop" parameterType="java.lang.Integer"
+		resultType="grp.team7.kelvin.entity.Dish">
+		SELECT
+			*
+		FROM
+			dish
+		WHERE shop_id = #{shopId}
+	</select>
+	<select id="findById" resultType="grp.team7.kelvin.entity.Dish">
+		SELECT
+			*
+		FROM
+			dish
+		WHERE id = #{dishId}
+	</select>
+
+	<select id="findAllWithClass" resultType="grp.team7.kelvin.entity.Dish">
+		SELECT
+			*
+		FROM
+			dish
+		WHERE class = #{dishClass}
+	</select>
+	
+	<select id="findAllWithShopAndClass" resultType="grp.team7.kelvin.entity.Dish">
+		SELECT
+			*
+		FROM
+			dish
+		WHERE class = #{dishClass} AND shopid = #{shopId}
+	</select>
+	
+	<insert id="addDish" keyProperty="dishId" useGeneratedKeys="true"
+		parameterType="grp.team7.kelvin.entity.Dish">
+		INSERT INTO 
+		dish(dish_name,price,shop_id,dish_class,dish_picture,status)
+		VALUES
+		(#{dishName},#{price},#{shopId},#{dishClass},#{dishPicture},#{status})
+	</insert>
+	
+	<update id="updateDish"
+		parameterType="grp.team7.kelvin.entity.Dish">
+		UPDATE dish
+		<set>
+		shop_dishName=#{dishName},
+		price=#{price},
+		shop_id=#{shopId},
+		dish_class=#{dishClass},
+		dish_picture=#{dishPicture},
+		status=#{status},
+		</set>
+		WHERE id = #{shopId}
+	</update>
+
+	<update id="putOnDish"
+		parameterType="grp.team7.kelvin.entity.Dish">
+		UPDATE dish
+		<set>
+		status=True
+		</set>
+		WHERE id = #{shopId}
+	</update>
+	
+	<update id="pullDownDish"
+		parameterType="grp.team7.kelvin.entity.Dish">
+		UPDATE dish
+		<set>
+		status=False
+		</set>
+		WHERE id = #{shopId}
+	</update>
+
+	<delete id="deleteDish" parameterType="java.lang.Integer">
+		DELETE FROM dish
+		WHERE id = #{dishId}
+	</delete>
+	
+	
+</mapper>

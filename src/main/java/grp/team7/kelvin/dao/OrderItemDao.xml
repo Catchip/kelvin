@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="grp.team7.kelvin.dao.OrderItemDao">
+	<select id="findByOrder" parameterType="java.lang.Integer"
+		resultType="grp.team7.kelvin.entity.OrderItem">
+		SELECT
+			*
+		FROM
+			orderitem
+		WHERE order_id = #{orderId}
+	</select>
+
+	<insert id="addOrderItem" keyProperty="Id" useGeneratedKeys="true"
+		parameterType="grp.team7.kelvin.entity.OrderItem">
+		INSERT INTO 
+		orderitem(order_id,dish_id,dish_price,dish_num,dish_class)
+		VALUES
+		(#{orderId},#{dishId},#{dishPrice},#{dishNum},#{dishClass})
+	</insert>
+
+	<delete id="deleteByOrder" parameterType="java.lang.Integer">
+		DELETE FROM orderitem
+		WHERE order_id = #{orderId}
+	</delete>
+	
+</mapper>

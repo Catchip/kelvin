@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="grp.team7.kelvin.dao.UserDao">
+	<select id="findById" parameterType="java.lang.Integer"
+		resultType="grp.team7.kelvin.entity.User">
+		SELECT
+			*
+		FROM
+			user
+		WHERE user_id = #{id}
+	</select>
+	<select id="findAll" resultType="grp.team7.kelvin.entity.User">
+		SELECT * FROM user
+	</select>
+	
+	<!--<select id="findByKeyword" resultType="grp.team7.kelvin.entity.User">-->
+		<!--SELECT-->
+			<!--*-->
+		<!--FROM-->
+			<!--user-->
+		<!--<where>-->
+			<!--<if test="userId != 0">-->
+				<!--user_id LIKE CONCAT('%', #{userId} ,'%')-->
+			<!--</if>-->
+			<!--<if test="userName != null">-->
+				<!--OR user_name LIKE CONCAT('%', #{userName} ,'%')-->
+			<!--</if>-->
+			<!--<if test="userSex != -1">-->
+				<!--OR user_sex LIKE CONCAT('%', #{userSex} ,'%')-->
+			<!--</if>-->
+			<!--<if test="userAccount != null">-->
+				<!--OR user_account LIKE CONCAT('%', #{userAccount} ,'%')-->
+			<!--</if>-->
+			<!--<if test="userMail != null">-->
+				<!--OR user_mail LIKE CONCAT('%', #{userMail} ,'%')-->
+			<!--</if>-->
+			<!--<if test="userTelephone != null">-->
+				<!--OR user_telephone LIKE CONCAT('%', #{userTelephone} ,'%')-->
+			<!--</if>-->
+		<!--</where>-->
+	<!--</select>-->
+	
+	<insert id="addShop" keyProperty="shopId" useGeneratedKeys="true"
+		parameterType="grp.team7.kelvin.entity.Shop">
+		INSERT INTO 
+		user(shop_name,user_shop_class,shop_address,shop_picture,shop_id,shop_telphone,shop_createtime,shop_updatetime,shop_starttime,shop_endtime)
+		VALUES
+		user(#{shop_name},#{user_shop_class},#{shop_address},#{shop_picture},#{shop_id},#{shop_telphone},#{shop_createtime},#{shop_updatetime},#{shop_starttime},#{shop_endtime},)
+		(#{userName},#{userSex},#{userAccount},#{userPasswordsha256},#{userMail},#{userTelephone},#{userUpdatetime},#{userCreatetime})
+	</insert>
+	
+	<update id="updateUser"
+		parameterType="grp.team7.kelvin.entity.User">
+		UPDATE user
+		<set>
+		user_name=#{userName}, 
+		user_sex=#{userSex},
+		<if test="userAccount != null">
+		user_account = #{userAccount},
+		</if>
+		user_passwordsha256 = #{userPasswordsha256},
+		user_mail = #{userMail},
+		user_telephone = #{userTelephone},
+		user_updatetime = #{userUpdatetime}
+		</set>
+		WHERE user_id = #{userId}
+	</update>
+	
+	<delete id="deleteUser" parameterType="java.lang.Integer">
+		DELETE FROM user
+		WHERE user_id = #{id}
+	</delete>
+	
+	
+	<select id="findShopCollectById" parameterType="java.lang.Integer"
+		resultType="grp.team7.kelvin.entity.Shop">
+		SELECT
+			*
+		FROM
+			shop_collect
+		WHERE user_id = #{id}
+	</select>
+
+	<select id="findDishCollectById" parameterType="java.lang.Integer"
+		resultType="grp.team7.kelvin.entity.Dish">
+		SELECT
+			*
+		FROM
+			dish_collect
+		WHERE user_id = #{id}
+	</select>
+
+	<select id="checkUserPassword" resultType="grp.team7.kelvin.entity.User">
+		SELECT
+			* 
+		FROM
+			user 
+		WHERE
+			user_account=#{userAccount} AND user_passwordsha256=#{userPasswordsha256}
+	</select>
+</mapper>
