@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/test")
 public class TestController {
-	@Autowired
-	private TestService testservice;
-	public TestController() {
-	
-	}
+    @Autowired
+    private TestService testservice;
+    public TestController() {
+    
+    }
 }

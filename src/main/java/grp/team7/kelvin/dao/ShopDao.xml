@@ -3,83 +3,83 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="grp.team7.kelvin.dao.ShopDao">
-	<select id="findById" parameterType="java.lang.Integer"
-		resultType="grp.team7.kelvin.entity.Shop">
-		SELECT
-			*
-		FROM
-			shop
-		WHERE shop_id = #{id}
-	</select>
+    <select id="findById" parameterType="java.lang.Integer"
+        resultType="grp.team7.kelvin.entity.Shop">
+        SELECT
+            *
+        FROM
+            shop
+        WHERE shop_id = #{id}
+    </select>
 
-	<select id="findAll" resultType="grp.team7.kelvin.entity.Shop">
-		SELECT * FROM shop
-	</select>
+    <select id="findAll" resultType="grp.team7.kelvin.entity.Shop">
+        SELECT * FROM shop
+    </select>
 
-	<select id="findAllWithUser" parameterType="java.lang.Integer" 
-		resultType="grp.team7.kelvin.entity.Shop">
-		SELECT
-			*
-		FROM
-			shop
-		WHERE user_id = #{userId}
-	</select>
-	
-	<!--<select id="findByKeyword" resultType="grp.team7.kelvin.entity.Shop">-->
-		<!--SELECT-->
-			<!--*-->
-		<!--FROM-->
-			<!--shop-->
-		<!--<where>-->
-			<!--<if test="userId != 0">-->
-				<!--user_id LIKE CONCAT('%', #{userId} ,'%')-->
-			<!--</if>-->
-			<!--<if test="userName != null">-->
-				<!--OR user_name LIKE CONCAT('%', #{userName} ,'%')-->
-			<!--</if>-->
-			<!--<if test="userSex != -1">-->
-				<!--OR user_sex LIKE CONCAT('%', #{userSex} ,'%')-->
-			<!--</if>-->
-			<!--<if test="userAccount != null">-->
-				<!--OR user_account LIKE CONCAT('%', #{userAccount} ,'%')-->
-			<!--</if>-->
-			<!--<if test="userMail != null">-->
-				<!--OR user_mail LIKE CONCAT('%', #{userMail} ,'%')-->
-			<!--</if>-->
-			<!--<if test="userTelephone != null">-->
-				<!--OR user_telephone LIKE CONCAT('%', #{userTelephone} ,'%')-->
-			<!--</if>-->
-		<!--</where>-->
-	<!--</select>-->
-	
-	<insert id="addShop" keyProperty="shopId" useGeneratedKeys="true"
-		parameterType="grp.team7.kelvin.entity.Shop">
-		INSERT INTO 
-		shop(shop_name,user_id,shop_class,shop_address,shop_picture,shop_telephone,shop_createtime,shop_updatetime,shop_starttime,shop_endtime)
-		VALUES
-		(#{shopName},#{userId},#{shopClass},#{shopAddress},#{shopPicture},#{shopTelephone},#{shopCreatetime},#{shopUpdatetime},#{shopStarttime},#{shopEndtime})
-	</insert>
-	
-	<update id="updateShop"
-		parameterType="grp.team7.kelvin.entity.Shop">
-		UPDATE shop
-		<set>
-		shop_name=#{shopName}, 
-		shop_telephone = #{shopTelephone},
-		shop_address = #{shopAddress},
-		shop_picture = #{shopPicture},
-		shop_class = #{shopClass},
-		shop_createtime = #{shopCreatetime},
-		shop_starttime = #{shopStarttime}
-		shop_updatetime = #{shopUpdatetime}
-		shop_endtime = #{shopEndtime}
-		</set>
-		WHERE shop_id = #{shopId}
-	</update>
-	
-	<delete id="deleteShop" parameterType="java.lang.Integer">
-		DELETE FROM shop
-		WHERE shop_id = #{id}
-	</delete>
-	
+    <select id="findAllWithUser" parameterType="java.lang.Integer" 
+        resultType="grp.team7.kelvin.entity.Shop">
+        SELECT
+            *
+        FROM
+            shop
+        WHERE user_id = #{userId}
+    </select>
+    
+    <!--<select id="findByKeyword" resultType="grp.team7.kelvin.entity.Shop">-->
+        <!--SELECT-->
+            <!--*-->
+        <!--FROM-->
+            <!--shop-->
+        <!--<where>-->
+            <!--<if test="userId != 0">-->
+                <!--user_id LIKE CONCAT('%', #{userId} ,'%')-->
+            <!--</if>-->
+            <!--<if test="userName != null">-->
+                <!--OR user_name LIKE CONCAT('%', #{userName} ,'%')-->
+            <!--</if>-->
+            <!--<if test="userSex != -1">-->
+                <!--OR user_sex LIKE CONCAT('%', #{userSex} ,'%')-->
+            <!--</if>-->
+            <!--<if test="userAccount != null">-->
+                <!--OR user_account LIKE CONCAT('%', #{userAccount} ,'%')-->
+            <!--</if>-->
+            <!--<if test="userMail != null">-->
+                <!--OR user_mail LIKE CONCAT('%', #{userMail} ,'%')-->
+            <!--</if>-->
+            <!--<if test="userTelephone != null">-->
+                <!--OR user_telephone LIKE CONCAT('%', #{userTelephone} ,'%')-->
+            <!--</if>-->
+        <!--</where>-->
+    <!--</select>-->
+    
+    <insert id="addShop" keyProperty="shopId" useGeneratedKeys="true"
+        parameterType="grp.team7.kelvin.entity.Shop">
+        INSERT INTO 
+        shop(shop_name,user_id,shop_class,shop_address,shop_picture,shop_telephone,shop_createtime,shop_updatetime,shop_starttime,shop_endtime)
+        VALUES
+        (#{shopName},#{userId},#{shopClass},#{shopAddress},#{shopPicture},#{shopTelephone},#{shopCreatetime},#{shopUpdatetime},#{shopStarttime},#{shopEndtime})
+    </insert>
+    
+    <update id="updateShop"
+        parameterType="grp.team7.kelvin.entity.Shop">
+        UPDATE shop
+        <set>
+        shop_name=#{shopName}, 
+        shop_telephone = #{shopTelephone},
+        shop_address = #{shopAddress},
+        shop_picture = #{shopPicture},
+        shop_class = #{shopClass},
+        shop_createtime = #{shopCreatetime},
+        shop_starttime = #{shopStarttime}
+        shop_updatetime = #{shopUpdatetime}
+        shop_endtime = #{shopEndtime}
+        </set>
+        WHERE shop_id = #{shopId}
+    </update>
+    
+    <delete id="deleteShop" parameterType="java.lang.Integer">
+        DELETE FROM shop
+        WHERE shop_id = #{id}
+    </delete>
+    
 </mapper>

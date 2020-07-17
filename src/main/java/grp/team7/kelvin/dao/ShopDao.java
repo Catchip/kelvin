@@ -9,10 +9,10 @@ import java.util.List;
 */
 public interface ShopDao {
 
-	public Shop findById(Integer id);
-	public int addShop(Shop shop);
-	public int deleteShop(Integer id);
-	public int updateShop(Shop shop);
-	public List<Shop> findAll();
-	public List<Shop> findAllWithUser(Integer userId);
+    public Shop findById(Integer id);
+    public int addShop(Shop shop);
+    public int deleteShop(Integer id);
+    public int updateShop(Shop shop);
+    public List<Shop> findAll();
+    public List<Shop> findAllWithUser(Integer userId);
 }
