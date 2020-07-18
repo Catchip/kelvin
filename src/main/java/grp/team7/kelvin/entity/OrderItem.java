@@ -38,5 +38,11 @@ public class OrderItem {
     public void setDishClass(String dishClass) {
         this.dishClass = dishClass;
     }
+    public Integer getDishId() {
+        return dishId;
+    }
+    public void setDishId(Integer dishId) {
+        this.dishId = dishId;
+    }
 
 }

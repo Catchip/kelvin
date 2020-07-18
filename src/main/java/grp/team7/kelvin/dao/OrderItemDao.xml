@@ -12,7 +12,7 @@
         WHERE order_id = #{orderId}
     </select>
 
-    <insert id="addOrderItem" keyProperty="Id" useGeneratedKeys="true"
+    <insert id="add" keyProperty="Id" useGeneratedKeys="true"
         parameterType="grp.team7.kelvin.entity.OrderItem">
         INSERT INTO 
         orderitem(order_id,dish_id,dish_price,dish_num,dish_class)
@@ -24,5 +24,11 @@
         DELETE FROM orderitem
         WHERE order_id = #{orderId}
     </delete>
+    
+    <insert id="delete" parameterType="java.lang.Integer"
+        resultType="int">
+        DELETE FROM orderitem
+        WHERE order_id = #{orderId} AND dish_id = #{dishId}
+    </insert>
     
 </mapper>
