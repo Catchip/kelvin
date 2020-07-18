@@ -14,8 +14,7 @@ public interface UserDao {
     public int deleteUser(Integer id);
     public int updateUser(User user);
     public List<User> findAll();
-    
     public List<Dish> findDishCollectById(Integer id);
     public List<Shop> findShopCollectById(Integer id);
-    public User checkUserPassword(String userAccount, String userPasswordsha236);
+    public User findUserByAcAndPa(String userAccount, String userPasswordsha236);
 }

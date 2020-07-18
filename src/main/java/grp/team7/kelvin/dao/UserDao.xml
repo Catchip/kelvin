@@ -99,7 +99,7 @@
         WHERE dish_id IN ( SELECT dish_id FROM dishcollect WHERE user_id=#{userId}   )
     </select>
 
-    <select id="checkUserPassword" resultType="grp.team7.kelvin.entity.User">
+    <select id="findUserByAcAndPa" resultType="grp.team7.kelvin.entity.User">
         SELECT
             * 
         FROM

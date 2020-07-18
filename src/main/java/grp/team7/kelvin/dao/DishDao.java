@@ -15,6 +15,4 @@ public interface DishDao {
     public int addDish(Dish dish);
     public int deleteDish(Integer dishId);
     public int updateDish(Dish dish);
-    public int putOnDish(Integer dishId);
-    public int pullDownDish(Integer dishId);
 }

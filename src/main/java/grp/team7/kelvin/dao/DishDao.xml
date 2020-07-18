@@ -57,23 +57,6 @@
         WHERE id = #{shopId}
     </update>
 
-    <update id="putOnDish"
-        parameterType="grp.team7.kelvin.entity.Dish">
-        UPDATE dish
-        <set>
-        status=True
-        </set>
-        WHERE id = #{shopId}
-    </update>
-    
-    <update id="pullDownDish"
-        parameterType="grp.team7.kelvin.entity.Dish">
-        UPDATE dish
-        <set>
-        status=False
-        </set>
-        WHERE id = #{shopId}
-    </update>
 
     <delete id="deleteDish" parameterType="java.lang.Integer">
         DELETE FROM dish
