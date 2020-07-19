@@ -1,11 +1,19 @@
 package grp.team7.kelvin.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class OrderItem {
+    @JSONField(name="id")
     private Integer id;
+    @JSONField(name="orderId")
     private Integer orderId;
+    @JSONField(name="dishId")
     private Integer dishId;
+    @JSONField(name="dishPrice")
     private Float dishPrice;
+    @JSONField(name="dishNum")
     private Integer dishNum;
+    @JSONField(name="dishClass")
     private String dishClass;
 
     public Integer getId() {

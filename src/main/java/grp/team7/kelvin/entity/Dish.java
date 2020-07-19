@@ -2,13 +2,22 @@ package grp.team7.kelvin.entity;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Dish {
+    @JSONField(name="dishId")
     private Integer dishId;//菜品ID
+    @JSONField(name="dishName")
     private String dishName;//菜品名称
+    @JSONField(name="price")
     private Float price;//菜品价格
+    @JSONField(name="shopId")
     private Integer shopId;//所属店铺
+    @JSONField(name="dishClass")
     private String dishClass;//菜品类别
+    @JSONField(name="dishPicture")
     private String dishPicture; //图片路径
+    @JSONField(name="status")
     private Boolean status; //上架或下架
 
     public String getDishName() {

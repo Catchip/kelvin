@@ -1,5 +1,6 @@
 package grp.team7.kelvin.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Test;
@@ -13,6 +14,11 @@ import grp.team7.kelvin.entity.*;
 import grp.team7.kelvin.service.UserService;
 import grp.team7.kelvin.service.OrderService;
 import grp.team7.kelvin.service.ShopService;
+
+import java.util.List;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring-context.xml" })
@@ -70,7 +76,8 @@ public class UserTest {
         userService.addShop(shop);
     }
 
-    @Test void testAddOrder(){
+    @Test 
+    public void testAddOrder(){
         Order order = new Order();
         order.setShopId(1);
         order.setUserId(3);
@@ -78,6 +85,22 @@ public class UserTest {
         userService.addOrder(order);
         OrderItem orderitem = new OrderItem();
         orderitem.setDishId(1);
+    }
+
+    @Test 
+    public void testListToJson(){
+        Order order = new Order();
+        order.setShopId(1);
+        order.setUserId(3);
+        order.setMoney(123.213f);
+        Order order1 = new Order();
+        order1.setShopId(1);
+        order1.setUserId(3);
+        order1.setMoney(123.213f);
+        List<Order> orders = new ArrayList<>();
+        orders.add(order);
+        orders.add(order1);
+        System.out.println(JSON.toJSONString(orders));
     }
 
 }

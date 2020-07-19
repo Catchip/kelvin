@@ -37,7 +37,6 @@ public class UserServiceImp implements UserService{
     @Override
     public List<Shop> getShops(Integer userId){
         return shopdao.findAllWithUser(userId);
-
     }
 
     @Override
@@ -46,10 +45,13 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public int updateInformation(User user){
+    public User updateInformation(User user){
         Date date = new Date();
         user.setUserUpdatetime(date);
-        return userdao.updateUser(user);
+        if(userdao.updateUser(user)==1){
+            return userdao.findById(user.getUserId());
+        }
+        return null;
     }
 
     @Override
@@ -75,4 +77,23 @@ public class UserServiceImp implements UserService{
     public User signIn(String userAccount, String password){
         return userdao.findUserByAcAndPa(userAccount, SHA256Util.stringToSHA256(password));
     }
+
+    @Override
+    public int addShop(Shop shop){
+        return shopdao.addShop(shop);
+    }
+
+    @Override
+    public Order addOrder(Order order){
+        if(orderdao.addOrder(order)==1){
+            return orderdao.findByKeys(order.getShopId(),order.getUserId());
+        }
+        return null;
+    }
+
+    @Override
+    public User getInformation(Integer userId){
+        return userdao.findById(userId);
+    }
+
 }

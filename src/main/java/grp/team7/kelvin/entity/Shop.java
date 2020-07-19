@@ -1,22 +1,36 @@
 package grp.team7.kelvin.entity;
 
 import  java.util.Date;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.lang.Integer;
 import java.sql.Time;
 
 public class Shop{
 
+    @JSONField(name="shopId")
     private Integer shopId; //商铺ID
+    @JSONField(name="shopName")
     private String shopName; //商铺名称
+    @JSONField(name="shopClass")
     private String shopClass; //商铺类别
+    @JSONField(name="shopAddress")
     private String shopAddress; //商铺地址
+    @JSONField(name="shopPicture")
     private String shopPicture; //商铺图片路径
+    @JSONField(name="userId")
     private Integer userId; //归属者用户id
+    @JSONField(name="shopTelephone")
     private String shopTelephone;//商铺联系电话
+    @JSONField(name="shopCreatetime")
     private Date shopCreatetime;//商铺创建时间
+    @JSONField(name="shopUpdatetime")
     private Date shopUpdatetime;//最后一次修改店铺信息时间
-    private Time startTime; //每日开张时间
-    private Time endTime; //每日打烊日期
+    @JSONField(name="shopStarttime")
+    private Time shopStarttime; //每日开张时间
+    @JSONField(name="shopEndtime")
+    private Time shopEndtime; //每日打烊日期
         
 
     public Integer getShopId() {
@@ -91,20 +105,20 @@ public class Shop{
         this.shopPicture = shopPicture;
     }
 
-    public Time getStartTime() {
-        return startTime;
+    public Time getshopStarttime() {
+        return shopStarttime;
     }
 
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
+    public void setshoptarttime(Time startTime) {
+        this.shopStarttime = startTime;
     }
 
-    public Time getEndTime() {
-        return endTime;
+    public Time getShopEndtime() {
+        return shopEndtime;
     }
 
-    public void setEndTime(Time endTime) {
-        this.endTime = endTime;
+    public void setShopEndtime(Time endTime) {
+        this.shopEndtime = endTime;
     }
 
 
