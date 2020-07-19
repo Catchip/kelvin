@@ -21,12 +21,16 @@ public class UserTest {
         User user = new User();
         user.setUserName("罗宏宇");
         user.setUserSex(0);
-        user.setUserAccount("lhy");
+        user.setUserAccount("zty");
         user.setUserMail("123@123.com");
         user.setUserPasswordsha256("123456");
         user.setUserTelephone("423674123");
 
-        userService.signUp(user);
+        if(userService.signUp(user)==1){
+            System.out.println("sign up success");
+        }else{
+            System.out.println("sign up fail");
+        }
     }
 
     //@test

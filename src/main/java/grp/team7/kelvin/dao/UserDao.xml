@@ -11,9 +11,6 @@
             user
         WHERE user_id = #{id}
     </select>
-    <select id="findAll" resultType="grp.team7.kelvin.entity.User">
-        SELECT * FROM user
-    </select>
     
     <select id="findByAccount" parameterType="java.lang.String"
         resultType="grp.team7.kelvin.entity.User">
