@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import grp.team7.kelvin.entity.*;
 import grp.team7.kelvin.service.impl.*;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Controller
-@RequestMapping("/shop")
+@RequestMapping(value = "/shop", produces = "application/json;charset=utf-8")
 public class ShopController {
     @Autowired
     ShopServiceImp shopService;
@@ -25,10 +26,11 @@ public class ShopController {
     @Autowired
     OrderServiceImp orderService;
 
-    @RequestMapping("/dishes")
+    @RequestMapping(value = "/dishes")
     public @ResponseBody String getDishes(@RequestParam(value = "shopid", required = true) Integer shopId) {
         List<Dish> dishes = shopService.getDishes(shopId);
         String result = JSON.toJSONString(dishes, SerializerFeature.BeanToArray);
+        System.out.println(result);
         return result;
     }
 
@@ -37,6 +39,7 @@ public class ShopController {
     public @ResponseBody String getOrders(@RequestParam(value = "shopid", required = true) Integer shopId) {
         List<Order> orders = shopService.getOrders(shopId);
         String result = JSON.toJSONString(orders, SerializerFeature.BeanToArray);
+        System.out.println(result);
         return result;
     }
 
@@ -49,11 +52,10 @@ public class ShopController {
 
     @RequestMapping("/adddish.do")
     public @ResponseBody String addDish(@RequestBody String data) {
-        System.out.println("表现层正在执行添加操作");
         Dish dish = JSONObject.parseObject(data, Dish.class);
-        System.out.println("status is " + dish.getStatus());
         int flag = shopService.addDish(dish);
-        return "OK";
+        String result = String.format("{\"adddishflag\":%d}", flag);
+        return result;
     }
 
     @RequestMapping("/putondish.do")

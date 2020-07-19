@@ -16,7 +16,7 @@
             *
         FROM
             dish
-        WHERE id = #{dishId}
+        WHERE dish_id = #{dishId}
     </select>
 
     <select id="findAllWithClass" resultType="grp.team7.kelvin.entity.Dish">
@@ -47,20 +47,32 @@
         parameterType="grp.team7.kelvin.entity.Dish">
         UPDATE dish
         <set>
-        shop_dishName=#{dishName},
+        <if test="dishName!= null">
+        dish_name=#{dishName},
+        </if>
+        <if test="price!= null">
         price=#{price},
+        </if>
+        <if test="shopId!= null">
         shop_id=#{shopId},
+        </if>
+        <if test="dishClass!= null">
         dish_class=#{dishClass},
+        </if>
+        <if test="dishPicture!= null">
         dish_picture=#{dishPicture},
+        </if>
+        <if test="status!= null">
         status=#{status},
+        </if>
         </set>
-        WHERE id = #{shopId}
+        WHERE dish_id = #{dishId}
     </update>
 
 
     <delete id="deleteDish" parameterType="java.lang.Integer">
         DELETE FROM dish
-        WHERE id = #{dishId}
+        WHERE dish_id = #{dishId}
     </delete>
     
     

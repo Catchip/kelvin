@@ -56,7 +56,7 @@ public class ShopServiceImp implements ShopService {
     public int pullDownDish(Integer dishId) {
         Dish dish = new Dish();
         dish.setDishId(dishId);
-        Boolean x = true;
+        Boolean x = false;
         dish.setStatus(x);
         return dishdao.updateDish(dish);
     }
