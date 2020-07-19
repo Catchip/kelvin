@@ -10,7 +10,7 @@ import grp.team7.kelvin.dao.*;
 import java.util.List;
 
 @Service
-public class ShopServiceImp implements ShopService{
+public class ShopServiceImp implements ShopService {
 
     @Autowired
     private DishDao dishdao;
@@ -19,45 +19,45 @@ public class ShopServiceImp implements ShopService{
     private OrderDao orderdao;
 
     @Override
-    public List<Dish> getDishes(Integer shopId){
-       return dishdao.findAllWithShop(shopId);
+    public List<Dish> getDishes(Integer shopId) {
+        return dishdao.findAllWithShop(shopId);
     }
 
     @Override
-    public List<Order> getOrders(Integer shopId){
+    public List<Order> getOrders(Integer shopId) {
         return orderdao.findByShop(shopId);
     }
 
     @Override
-    public int addDish(Dish dish){
+    public int addDish(Dish dish) {
         return dishdao.addDish(dish);
     }
 
     @Override
-    public int updateDishInfo(Dish dish){
+    public int updateDishInfo(Dish dish) {
         return dishdao.updateDish(dish);
     }
 
     @Override
-    public int deleteDish(Integer dishId){
+    public int deleteDish(Integer dishId) {
         return dishdao.deleteDish(dishId);
     }
 
     @Override
-    public int putOnDish(Integer dishId){
+    public int putOnDish(Integer dishId) {
         Dish dish = new Dish();
         dish.setDishId(dishId);
         Boolean x = true;
-        dish.setStaus(x);
+        dish.setStatus(x);
         return dishdao.updateDish(dish);
     }
 
     @Override
-    public int pullDownDish(Integer dishId){
+    public int pullDownDish(Integer dishId) {
         Dish dish = new Dish();
         dish.setDishId(dishId);
         Boolean x = true;
-        dish.setStaus(x);
+        dish.setStatus(x);
         return dishdao.updateDish(dish);
     }
 }

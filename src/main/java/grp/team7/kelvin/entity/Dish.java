@@ -5,19 +5,20 @@ import java.util.Date;
 import com.alibaba.fastjson.annotation.JSONField;
 
 public class Dish {
-    @JSONField(name="dishId")
+
+    //@JSONField(name="dishId")
     private Integer dishId;//菜品ID
-    @JSONField(name="dishName")
+    //@JSONField(name="dishName")
     private String dishName;//菜品名称
-    @JSONField(name="price")
+    //@JSONField(name="price")
     private Float price;//菜品价格
-    @JSONField(name="shopId")
+    //@JSONField(name="shopId")
     private Integer shopId;//所属店铺
-    @JSONField(name="dishClass")
+    //@JSONField(name="dishClass")
     private String dishClass;//菜品类别
-    @JSONField(name="dishPicture")
+    //@JSONField(name="dishPicture")
     private String dishPicture; //图片路径
-    @JSONField(name="status")
+    //@JSONField(name="status")
     private Boolean status; //上架或下架
 
     public String getDishName() {
@@ -60,11 +61,11 @@ public class Dish {
         this.dishPicture = dishPicture;
     }
 
-    public void setStaus(Boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
-    public Boolean getStaus() {
+    public Boolean getStatus() {
         return status;
     }
     public void setDishClass(String dishClass) {
