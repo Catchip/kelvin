@@ -26,22 +26,29 @@ public class UserTest {
         user.setUserPasswordsha256("123456");
         user.setUserTelephone("423674123");
 
-        userService.addUser(user);
+        userService.signUp(user);
     }
 
-    @Test
-    public void testFindUserById() {
-        User user = userService.findUserById(1);
-        System.out.println(user);
-    }
+    //@test
+    //public void testfinduserbyid() {
+        //user user = userservice.finduserbyid(1);
+        //system.out.println(user);
+    //}
 
     @Test
     public void testUpdateUser() {
         User user = new User();
         user.setUserName("周天阳");
         user.setUserSex(1);
+        user.setUserId(1);
 
-        userService.updateUser(user);
+        userService.updateInformation(user);
+    }
+
+    @Test
+    public void testSignIn(){
+        User user = userService.signIn("zty","123456");
+        System.out.println(user);
     }
 
 }

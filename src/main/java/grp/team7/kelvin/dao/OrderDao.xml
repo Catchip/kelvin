@@ -37,12 +37,14 @@
     
     <insert id="addOrder" keyProperty="orderId" useGeneratedKeys="true"
         parameterType="grp.team7.kelvin.entity.Order">
-        INSERT INTO 
+        INSERT INTO
+        order(user_id,shop_id,order_createtime,money,is_consumed,uuid)
         VALUES
+        order(#{userId},#{shopId},#{orderCreatetime},#{money},#{isConsumed},#{uuid})
     </insert>
     
     <update id="updateOrder"
-        parameterType="">
+        parameterType="grp.team7.kelvin.entity.Order">
         UPDATE order
         <set>
         <if test="userId != null">

@@ -25,10 +25,22 @@
         WHERE order_id = #{orderId}
     </delete>
     
-    <insert id="delete" parameterType="java.lang.Integer"
-        resultType="int">
+    <update id="update"
+        parameterType="grp.team7.kelvin.entity.OrderItem">
+        UPDATE orderitem
+        <set>
+        order_id = #{orderId},
+        dish_id = #{dishId},
+        dish_price = #{dishPrice},
+        dish_num = #{dishNum},
+        dish_class = #{dishClass}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
         DELETE FROM orderitem
         WHERE order_id = #{orderId} AND dish_id = #{dishId}
-    </insert>
+    </delete>
     
 </mapper>

@@ -30,7 +30,7 @@ public class OrderServiceImp implements OrderService{
            if(flag == 0){//若存在插入失败，删除之前插入的
                while(iter.hasPrevious()){
                    OrderItem orderitem1 = iter.previous();
-                   orderitemdao.delete(orderitem1.getOrderId(),orderitem1.getDishId())
+                   orderitemdao.delete(orderitem1.getOrderId(),orderitem1.getDishId());
                }
                return 0;
            }
@@ -39,7 +39,7 @@ public class OrderServiceImp implements OrderService{
     }
 
     public int deleteOrderItem(Integer orderId, Integer dishId){
-        orderitemdao.delete(Integer orderId,Integer dishId)
+        return orderitemdao.delete(orderId,dishId);
     }
 
 

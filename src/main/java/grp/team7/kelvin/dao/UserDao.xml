@@ -105,6 +105,6 @@
         FROM
             user 
         WHERE
-            user_account=#{userAccount} AND user_passwordsha256=#{userPasswordsha256}
+            user_account=#{param1} AND user_passwordsha256=#{param2}
     </select>
 </mapper>
