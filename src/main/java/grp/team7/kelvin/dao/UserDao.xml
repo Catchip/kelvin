@@ -15,6 +15,18 @@
         SELECT * FROM user
     </select>
     
+    <select id="findByAccount" parameterType="java.lang.String"
+        resultType="grp.team7.kelvin.entity.User">
+        SELECT
+            *
+        FROM
+            user
+        WHERE user_account = #{userAccount}
+    </select>
+
+    <select id="findAll" resultType="grp.team7.kelvin.entity.User">
+        SELECT * FROM user
+    </select>
     <!--<select id="findByKeyword" resultType="grp.team7.kelvin.entity.User">-->
         <!--SELECT-->
             <!--*-->

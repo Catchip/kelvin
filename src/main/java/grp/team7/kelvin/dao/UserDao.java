@@ -10,6 +10,7 @@ import java.util.List;
 */
 public interface UserDao {
     public User findById(Integer id);
+    public User findByAccount(String userAccount);
     public int addUser(User user);
     public int deleteUser(Integer id);
     public int updateUser(User user);
