@@ -10,10 +10,12 @@ public interface UserService {
     public User getInformation(Integer userId);
     public int updatePassword(User user);
     public List<Dish> getDishCollect(Integer user_Id);
-    public List<Shop> getShopCollect(Integer user_Id); 
+    public List<Shop> getShopCollect(Integer user_Id);
     public User signIn(String userAccount, String password);
     public List<Shop> getShops(Integer user_Id);
     public List<Order>  getOrders(Integer user_Id);
     public int addShop(Shop shop);
     public Order addOrder(Order order);
+    public int addDishCollect(Integer dishId, Integer userId);
+    public int addShopCollect(Integer shopId, Integer userId);
 }
