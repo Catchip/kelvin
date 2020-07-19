@@ -1,5 +1,7 @@
 package grp.team7.kelvin.service;
 
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.validator.PublicClassValidator;
@@ -7,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import grp.team7.kelvin.entity.User;
+import grp.team7.kelvin.entity.*;
 import grp.team7.kelvin.service.UserService;
+import grp.team7.kelvin.service.OrderService;
+import grp.team7.kelvin.service.ShopService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring-context.xml" })
@@ -53,6 +57,27 @@ public class UserTest {
     public void testSignIn(){
         User user = userService.signIn("zty","123456");
         System.out.println(user);
+    }
+
+    @Test
+    public void testAddShop(){
+        Shop shop = new Shop();
+        shop.setUserId(3);
+        shop.setShopName("开饭了官方店");
+        Date date = new Date();
+        shop.setShopCreatetime(date);
+        shop.setShopUpdatetime(date);
+        userService.addShop(shop);
+    }
+
+    @Test void testAddOrder(){
+        Order order = new Order();
+        order.setShopId(1);
+        order.setUserId(3);
+        order.setMoney(123.213f);
+        userService.addOrder(order);
+        OrderItem orderitem = new OrderItem();
+        orderitem.setDishId(1);
     }
 
 }
