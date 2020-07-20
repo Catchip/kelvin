@@ -115,24 +115,18 @@ public class UserServiceImp implements UserService {
         return 0;
     }
 
-    /**
-     * 检查用户的管理员身份
-     * @param user 检查的用户类
-     * @return 返回用户的角色编号，如果不是管理员就为null
-     */
     @Override
-    public Integer checkAdmin(int userId) {
-        return userdao.checkAdminRoleById(userId);
+    public int checkAdmin(int userId) {
+        Integer result =  userdao.checkAdminRoleById(userId);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
-    /**
-     * 修改用户的管理员身份，规定0为非管理员，1为普通管理员，2为超级管理员。
-     * @param userId 需要修改的用户id
-     * @param role 需要改成的用户身份
-     */
     @Override
     public int updateUserRole(int userId, int role) {
-        if (checkAdmin(userId) == null) {
+        if (checkAdmin(userId) == 0) {
             if (role == 0) {
                 return 0;
             }
