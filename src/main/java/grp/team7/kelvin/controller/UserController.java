@@ -42,13 +42,12 @@ public class UserController {
      * @param data JSON字符串，接受的参数为userAccount,userPassword
      */
     @RequestMapping("/login")
+    @CrossOrigin("*")
     public @ResponseBody String userSignIn(@RequestBody String data) {
-        System.out.println("进入测试");
         JSONObject jsObject = JSONObject.parseObject(data);
         String userAccount = jsObject.getString("userAccount");
         String userPassword = jsObject.getString("userPassword");
         User user = userService.signIn(userAccount, userPassword);
-        System.out.println(user);
         if (user != null) {
             JSONObject userjson = (JSONObject)JSON.toJSON(user);
             userjson.put("role", userService.getUserRole(user.getUserId()));
@@ -66,7 +65,15 @@ public class UserController {
         return result;
     }
 
-    @RequestMapping("/info")
+    @RequestMapping("/edit")
+    public @ResponseBody String userUpdateInfo(@RequestBody String data) {
+        User user = JSON.parseObject(data, User.class);
+        User newuser = userService.updateInformation(user);
+        String result = JSON.toJSONString(newuser);
+        return result;
+    }
+
+    @RequestMapping("/getinfo")
     public @ResponseBody String userInfo(@RequestBody String data) {
         JSONObject jsObject = JSONObject.parseObject(data);
         Integer userId = jsObject.getInteger("userId");
@@ -80,68 +87,20 @@ public class UserController {
         return null;
     }
 
-    // not tested
-    @RequestMapping("/orders")
-    public @ResponseBody String userOrders(@RequestBody String data) {
-        JSONObject jsObject = JSONObject.parseObject(data);
-        Integer userId = jsObject.getInteger("userId");
-        List<Order> orders = userService.getOrders(userId);
-        //还不知道如何返回List
-        String result = JSON.toJSONString(orders);
-        return result;
-    }
-
-    @RequestMapping("/shops")
-    public @ResponseBody String userShops(@RequestBody String data) {
-        JSONObject jsObject = JSONObject.parseObject(data);
-        Integer userId = jsObject.getInteger("userId");
-        List<Shop> shops = userService.getShops(userId);
-        String result = JSON.toJSONString(shops);
-        return result;
-    }
-
-    @RequestMapping("/addorder.do")
-    public @ResponseBody String userAddOrder(@RequestBody String data) {
-        JSONArray jsonArray = JSONObject.parseArray(data);
-        JSONObject jsonObject = (JSONObject) jsonArray.get(0);
-
-        Order order = JSONObject.parseObject(jsonObject.toJSONString(), Order.class);
-
-        List<OrderItem> orderitems = new ArrayList<>();
-        orderitems = jsonArray.stream().map(e->JSONObject.parseObject(((JSONObject)e).toJSONString(), OrderItem.class)).collect(Collectors.toList());
-        orderitems.remove(0);
-
-        System.out.println(orderitems);
-        order = userService.addOrder(order);
-        int flag = orderService.addOrderItems(orderitems, order.getOrderId());
-        String result = String.format("{\"addorderflag\":%d}", flag);
-        return result;
-    }
 
 
-    @RequestMapping("/addshop.do")
-    public @ResponseBody String userAddShop(@RequestBody String  data) {
-        Shop shop = JSON.parseObject(data, Shop.class);
-        int flag = userService.addShop(shop);
-        String result = String.format("{\"addshopflag\":%d}", flag);
-        return result;
-    }
-
-    @RequestMapping("/updateinfo.do")
-    public @ResponseBody String userUpdateInfo(@RequestBody String data) {
-        User user = JSON.parseObject(data, User.class);
-        User newuser = userService.updateInformation(user);
-        String result = JSON.toJSONString(newuser);
-        return result;
-    }
-
-    @RequestMapping("/updatepassword.do")
+    @RequestMapping("/updatepassword")
     public @ResponseBody String userUpdatePassword(@RequestBody String data) {
         User user = JSON.parseObject(data, User.class);
         int flag = userService.updatePassword(user);
         String result = String.format("{\"updatepasswordflag\":%d}", flag);
         return result;
     }
+
+
+
+
+
 
     // not tested
     @RequestMapping("/getdishcollect.do")

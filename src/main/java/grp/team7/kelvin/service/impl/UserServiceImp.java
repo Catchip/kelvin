@@ -7,6 +7,7 @@ import java.util.List;
 
 import grp.team7.kelvin.dao.UserDao;
 import grp.team7.kelvin.dao.ShopDao;
+import grp.team7.kelvin.dao.DishDao;
 import grp.team7.kelvin.dao.OrderDao;
 import grp.team7.kelvin.entity.*;
 import grp.team7.kelvin.utils.SHA256Util;
@@ -22,6 +23,9 @@ public class UserServiceImp implements UserService {
 
     @Autowired
     private OrderDao orderDao;
+
+    @Autowired
+    private DishDao dishDao;
 
 
     @Override
@@ -146,7 +150,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public int updateUserRole(int userId, int role) {
-        if (checkAdmin(userId) == 0) {
+        if (getUserRole(userId) == 0) {
             if (role == 0) {
                 return 0;
             }
@@ -157,6 +161,20 @@ public class UserServiceImp implements UserService {
             }
             return userDao.updateUserRole(userId, role);
         }
+    }
+
+    public List<Dish> getAllDishes() {
+        return dishDao.findAll();
+    }
+
+    @Override
+    public int deleteShop(Integer shopId) {
+        return shopDao.deleteShop(shopId);
+    }
+
+    @Override
+    public List<Shop> getAllShops() {
+        return shopDao.findAll();
     }
 
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import grp.team7.kelvin.entity.*;
 import grp.team7.kelvin.service.impl.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,57 +26,48 @@ public class ShopController {
     @Autowired
     OrderServiceImp orderService;
 
-    @RequestMapping(value = "/dishes")
-    public @ResponseBody String getDishes(@RequestParam(value = "shopid", required = true) Integer shopId) {
-        List<Dish> dishes = shopService.getDishes(shopId);
-        String result = JSON.toJSONString(dishes);
-        System.out.println(result);
-        return result;
+    @Autowired
+    UserServiceImp userService;
+
+
+    @RequestMapping("/add")
+    public @ResponseBody String userAddShop(@RequestBody String  data) {
+        Shop shop = JSON.parseObject(data, Shop.class);
+        int flag = userService.addShop(shop);
+        if (flag == 1)
+            return "OK";
+        else return "NOT OK";
+    }
+
+    @RequestMapping("/edit")
+    public @ResponseBody String editShop(@RequestBody String data) {
+        Shop shop = JSON.parseObject(data, Shop.class);
+        int flag = shopService.updateInfo(shop);
+        if (flag == 1)
+            return "OK";
+        else return "NOT OK";
+    }
+
+    @RequestMapping("/delete")
+    public @ResponseBody String deleteShop(@RequestParam(value = "shopid", required = true) Integer shopId) {
+        int flag1 = shopService.deleteAllDish(shopId);
+        int flag2 = userService.deleteShop(shopId);
+        if (flag1 == 1 && flag2 == 1)
+            return "OK";
+        else return "NOT OK";
     }
 
 
-    @RequestMapping("/orders")
-    public @ResponseBody String getOrders(@RequestParam(value = "shopid", required = true) Integer shopId) {
-        List<Order> orders = shopService.getOrders(shopId);
-        String result = JSON.toJSONString(orders);
-        System.out.println(result);
+    @RequestMapping("/list")
+    public @ResponseBody String getShops(@RequestParam(value = "userid") Integer userId) {
+        List<Shop> shops = new ArrayList<>();
+        if (userId != null)
+            shops = userService.getShops(userId);
+        else
+            shops = userService.getAllShops();
+        String result = JSON.toJSONString(shops);
         return result;
     }
 
-    @RequestMapping("/orders/orderitems")
-    public @ResponseBody String getOrderItems(@RequestParam(value = "orderid", required = true) Integer orderId) {
-        List<OrderItem> orderitems = orderService.getOrderItems(orderId);
-        String result = JSON.toJSONString(orderitems);
-        return result;
-    }
-
-    @RequestMapping("/adddish.do")
-    public @ResponseBody String addDish(@RequestBody String data) {
-        Dish dish = JSONObject.parseObject(data, Dish.class);
-        int flag = shopService.addDish(dish);
-        String result = String.format("{\"adddishflag\":%d}", flag);
-        return result;
-    }
-
-    @RequestMapping("/putondish.do")
-    public @ResponseBody String putOnDish(@RequestParam(value = "dishid", required = true) Integer dishId) {
-        int flag = shopService.putOnDish(dishId);
-        String result = String.format("{\"putondishflag\":%d}", flag);
-        return result;
-    }
-
-    @RequestMapping("/pulldowndish.do")
-    public @ResponseBody String pullDownDish(@RequestParam(value = "dishid", required = true) Integer dishId) {
-        int flag = shopService.pullDownDish(dishId);
-        String result = String.format("{\"putondishflag\":%d}", flag);
-        return result;
-    }
-
-    @RequestMapping("/deletedish.do")
-    public @ResponseBody String deleteDish(@RequestParam(value = "dishid", required = true) Integer dishId) {
-        int flag = shopService.deleteDish(dishId);
-        String result = String.format("{\"deleteflag\":%d}", flag);
-        return result;
-    }
 
 }

@@ -12,6 +12,13 @@
         WHERE shop_id = #{shopId}
     </select>
 
+    <select id="findAll" resultType="grp.team7.kelvin.entity.Dish" >
+        SELECT
+            *
+        FROM
+            dish
+    </select>
+
     <select id="findByIdList" parameterType="java.util.List" resultType="grp.team7.kelvin.entity.Dish" >
         SELECT
             *
@@ -79,5 +86,9 @@
         WHERE dish_id = #{dishId}
     </delete>
     
+    <delete id="deleteWithShop" parameterType="java.lang.Integer" >
+        DELETE FROM dish
+        WHERE shop_id = #{shopId}
+    </delete>
     
 </mapper>

@@ -15,6 +15,7 @@ public interface UserService {
     public List<Shop> getShops(Integer user_Id);
     public List<Order>  getOrders(Integer user_Id);
     public int addShop(Shop shop);
+    public int deleteShop(Integer shopId);
     public Order addOrder(Order order);
     public int addDishCollect(Integer dishId, Integer userId);
     public int addShopCollect(Integer shopId, Integer userId);
@@ -34,4 +35,6 @@ public interface UserService {
      * @param role 需要改成的用户身份。0为非管理员，1为普通管理员，2为超级管理员。
      */
     public int updateUserRole(int userId, int role);
+    public List<Dish> getAllDishes();
+    public List<Shop> getAllShops();
 }

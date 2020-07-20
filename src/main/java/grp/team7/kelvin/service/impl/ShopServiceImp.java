@@ -7,6 +7,7 @@ import grp.team7.kelvin.service.ShopService;
 import grp.team7.kelvin.entity.*;
 import grp.team7.kelvin.dao.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -17,6 +18,12 @@ public class ShopServiceImp implements ShopService {
 
     @Autowired
     private OrderDao orderdao;
+
+    @Autowired
+    private ShopDao shopDao;
+
+    @Autowired
+    private DishDao dishDao;
 
     @Override
     public List<Dish> getDishes(Integer shopId) {
@@ -59,5 +66,17 @@ public class ShopServiceImp implements ShopService {
         Boolean x = false;
         dish.setStatus(x);
         return dishdao.updateDish(dish);
+    }
+
+    @Override
+    public int updateInfo(Shop shop) {
+        Date date = new Date();
+        shop.setShopUpdatetime(date);
+        return shopDao.updateShop(shop);
+    }
+
+    @Override
+    public int deleteAllDish(Integer shopId) {
+        return dishDao.deleteWithShop(shopId);
     }
 }
