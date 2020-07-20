@@ -30,6 +30,12 @@ public class UserTest {
     @Autowired
     private OrderDao orderDao;
 
+    @Autowired
+    private DishDao dishDao;
+
+    @Autowired
+    private OrderItemDao orderItemDao;
+
     @Test
     public void testAdd() {
         User user = new User();
@@ -114,6 +120,32 @@ public class UserTest {
         order.setUserId(3);
         orderDao.addOrder(order);
         System.out.println(orderDao.lastInsertId());
+    }
+
+    @Test
+    public void testDishDao() {
+        List<Integer> dishId = new ArrayList<>();
+        dishId.add(1);
+        dishId.add(3);
+        List<Dish> dishes = dishDao.findByIdList(dishId);
+        System.out.println(dishes);
+    }
+
+    @Test
+    public void testOrderItemDao() {
+        List<OrderItem> orderItems = new ArrayList<>();
+        OrderItem orderItem = new OrderItem();
+        orderItem.setDishId(1);
+        orderItem.setOrderId(1);
+        orderItem.setDishNum(3);
+        orderItem.setDishPrice(32.1f);
+        orderItems.add(orderItem);
+        orderItem.setDishId(3);
+        orderItem.setOrderId(1);
+        orderItem.setDishPrice(32.1f);
+        orderItem.setDishNum(3);
+        orderItems.add(orderItem);
+        orderItemDao.addByList(orderItems);
     }
 
 }

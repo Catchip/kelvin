@@ -3,18 +3,15 @@ package grp.team7.kelvin.entity;
 import com.alibaba.fastjson.annotation.JSONField;
 
 public class OrderItem {
-    @JSONField(name="id")
     private Integer id;
-    @JSONField(name="orderId")
     private Integer orderId;
-    @JSONField(name="dishId")
     private Integer dishId;
-    @JSONField(name="dishPrice")
     private Float dishPrice;
-    @JSONField(name="dishNum")
     private Integer dishNum;
-    @JSONField(name="dishClass")
     private String dishClass;
+    private String dishPicture;
+    private String dishName;
+
 
     public Integer getId() {
         return id;
@@ -51,6 +48,18 @@ public class OrderItem {
     }
     public void setDishId(Integer dishId) {
         this.dishId = dishId;
+    }
+    public String getDishPicture() {
+        return dishPicture;
+    }
+    public void setDishPicture(String dishPicture) {
+        this.dishPicture = dishPicture;
+    }
+    public String getDishName() {
+        return dishName;
+    }
+    public void setDishName(String dishName) {
+        this.dishName = dishName;
     }
 
 }

@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
 public class OrderServiceImp implements OrderService {
     @Autowired
     OrderItemDao orderitemdao;
+
+    @Autowired
     DishDao dishDao;
 
     @Override
@@ -38,6 +40,7 @@ public class OrderServiceImp implements OrderService {
             Dish dish = iter2.next();
             orderitem.setOrderId(orderId);
             orderitem.setDishId(dish.getDishId());
+            orderitem.setDishName(dish.getDishName());
             orderitem.setDishPrice(dish.getPrice());
             orderitem.setDishClass(dish.getDishClass());
         }

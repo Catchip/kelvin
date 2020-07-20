@@ -12,14 +12,13 @@
         WHERE shop_id = #{shopId}
     </select>
 
-    <select id="findByIdList" resultType="grp.team7.kelvin.entity.Dish" >
+    <select id="findByIdList" parameterType="java.util.List" resultType="grp.team7.kelvin.entity.Dish" >
         SELECT
             *
         FROM
             dish
         WHERE dish_id IN 
-      <foreach item="dishId" index="index" collection="list"
-          open="(" separator="," close=")">
+      <foreach item="dishId" index="index" collection="list"  open="(" separator="," close=")" >
             #{dishId}
       </foreach>
     </select>
