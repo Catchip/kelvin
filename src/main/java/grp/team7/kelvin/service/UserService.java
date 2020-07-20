@@ -20,4 +20,18 @@ public interface UserService {
     public int addShopCollect(Integer shopId, Integer userId);
     public int getDishCollectStatus(Integer userId, Integer dishId);
     public int getShopCollectStatus(Integer userId, Integer shopId);
+
+    /**
+     * 检查用户的管理员身份
+     * @param user 检查的用户类
+     * @return 返回用户的角色编号。规定0为非管理员，1为普通管理员，2为超级管理员。
+     */
+    public int checkAdmin(int userId);
+
+    /**
+     * 修改用户的管理员身份
+     * @param userId 需要修改的用户id
+     * @param role 需要改成的用户身份。0为非管理员，1为普通管理员，2为超级管理员。
+     */
+    public int updateUserRole(int userId, int role);
 }

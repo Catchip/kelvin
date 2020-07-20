@@ -148,4 +148,16 @@ public class UserTest {
         orderItemDao.addByList(orderItems);
     }
 
+    @Test
+    public void testCheckAdmin() {
+        User user = userService.signIn("zty", "123456");
+        System.out.println(userService.checkAdmin(user.getUserId()));
+    }
+
+    @Test
+    public void testUpdateAdmin() {
+        User user = userService.signIn("zty", "123456");
+        userService.updateUserRole(user.getUserId(), 0);
+    }
+
 }

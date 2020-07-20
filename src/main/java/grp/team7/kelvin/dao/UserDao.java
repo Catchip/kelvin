@@ -6,6 +6,8 @@ import grp.team7.kelvin.entity.Shop;
 import java.util.List;
 import java.util.Date;
 
+import org.apache.ibatis.annotations.Param;
+
 /**
 * UserDao
 */
@@ -23,4 +25,8 @@ public interface UserDao {
     public int addDishCollect(Integer userId, Integer dishId, Date collectDate);
     public int addShopCollect(Integer userId, Integer shopId, Date collectDate);
     public User findUserByAcAndPa(String userAccount, String userPasswordsha256);
+    public Integer checkAdminRoleById(Integer id);
+    public int updateUserRole(@Param ("id") Integer id, @Param("role") Integer  role);
+    public int insertAdmin(@Param ("id") Integer id, @Param("role") Integer  role);
+    public int deleteAdmin(Integer id);
 }

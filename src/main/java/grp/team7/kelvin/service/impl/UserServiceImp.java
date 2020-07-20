@@ -134,4 +134,29 @@ public class UserServiceImp implements UserService {
             return 0;
         else return 1;
     }
+
+    @Override
+    public int checkAdmin(int userId) {
+        Integer result =  userDao.checkAdminRoleById(userId);
+        if (result == null) {
+            return 0;
+        }
+        return result;
+    }
+
+    @Override
+    public int updateUserRole(int userId, int role) {
+        if (checkAdmin(userId) == 0) {
+            if (role == 0) {
+                return 0;
+            }
+            return userDao.insertAdmin(userId, role);
+        } else {
+            if (role == 0) {
+                return userDao.deleteAdmin(userId);
+            }
+            return userDao.updateUserRole(userId, role);
+        }
+    }
+
 }
