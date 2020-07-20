@@ -5,20 +5,20 @@ import java.util.Date;
 import com.alibaba.fastjson.annotation.JSONField;
 
 public class Order {
-    @JSONField(name="orderId")
+    @JSONField(name = "orderId")
     public Integer orderId; //订单号
-    @JSONField(name="userId")
+    @JSONField(name = "userId")
     public Integer userId;//消费用户ID
-    @JSONField(name="shopId")
+    @JSONField(name = "shopId")
     public Integer shopId;//店铺ID
-    @JSONField(name="orderCreatetime")
+    @JSONField(name = "orderCreatetime")
     public Date orderCreatetime;//订单创立时间
-    @JSONField(name="money")
+    @JSONField(name = "money")
     public Float money;//消费的金钱
-    @JSONField(name="isConsumed")
+    @JSONField(name = "isConsumed")
     public Boolean isConsumed;//订单是否已经消费
-    @JSONField(name="UUID")
-    public String UUID;//验证码
+    @JSONField(name = "UUID")
+    public String uuid;//验证码
 
     public Order(Integer userId, Integer shopId, Float money, Boolean isConsumed) {
         this.userId = userId;
@@ -28,7 +28,7 @@ public class Order {
         Date date = new Date();
         this.orderCreatetime = date;
     }
-    public Order(){
+    public Order() {
 
     }
 
@@ -60,6 +60,12 @@ public class Order {
         return orderCreatetime;
     }
     public void setOrderCreatetime(Date orderCreatetime) {
+    }
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+    public String getUuid() {
+        return uuid;
     }
 
 }

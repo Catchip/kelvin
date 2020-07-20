@@ -14,6 +14,7 @@ import grp.team7.kelvin.entity.*;
 import grp.team7.kelvin.service.UserService;
 import grp.team7.kelvin.service.OrderService;
 import grp.team7.kelvin.service.ShopService;
+import grp.team7.kelvin.dao.*;
 
 import java.util.List;
 
@@ -26,6 +27,9 @@ public class UserTest {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private OrderDao orderDao;
+
     @Test
     public void testAdd() {
         User user = new User();
@@ -36,17 +40,17 @@ public class UserTest {
         user.setUserPasswordsha256("123456");
         user.setUserTelephone("423674123");
 
-        if(userService.signUp(user)==1){
+        if (userService.signUp(user) == 1) {
             System.out.println("sign up success");
-        }else{
+        } else {
             System.out.println("sign up fail");
         }
     }
 
     //@test
     //public void testfinduserbyid() {
-        //user user = userservice.finduserbyid(1);
-        //system.out.println(user);
+    //user user = userservice.finduserbyid(1);
+    //system.out.println(user);
     //}
 
     @Test
@@ -60,13 +64,13 @@ public class UserTest {
     }
 
     @Test
-    public void testSignIn(){
-        User user = userService.signIn("zty","123456");
+    public void testSignIn() {
+        User user = userService.signIn("zty", "123456");
         System.out.println(user);
     }
 
     @Test
-    public void testAddShop(){
+    public void testAddShop() {
         Shop shop = new Shop();
         shop.setUserId(3);
         shop.setShopName("开饭了官方店");
@@ -76,8 +80,8 @@ public class UserTest {
         userService.addShop(shop);
     }
 
-    @Test 
-    public void testAddOrder(){
+    @Test
+    public void testAddOrder() {
         Order order = new Order();
         order.setShopId(1);
         order.setUserId(3);
@@ -87,8 +91,8 @@ public class UserTest {
         orderitem.setDishId(1);
     }
 
-    @Test 
-    public void testListToJson(){
+    @Test
+    public void testListToJson() {
         Order order = new Order();
         order.setShopId(1);
         order.setUserId(3);
@@ -101,6 +105,15 @@ public class UserTest {
         orders.add(order);
         orders.add(order1);
         System.out.println(JSON.toJSONString(orders));
+    }
+
+    @Test
+    public void testOrderDao() {
+        Order order = new Order();
+        order.setShopId(3);
+        order.setUserId(3);
+        orderDao.addOrder(order);
+        System.out.println(orderDao.lastInsertId());
     }
 
 }

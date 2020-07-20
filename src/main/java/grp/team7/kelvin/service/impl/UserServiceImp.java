@@ -88,8 +88,13 @@ public class UserServiceImp implements UserService {
 
     @Override
     public Order addOrder(Order order) {
+        //生成UUID
+        //String uuid = "sdfsd";
+        //order.setUuid(uuid);
         if (orderdao.addOrder(order) == 1) {
-            return orderdao.findByKeys(order.getShopId(), order.getUserId());
+            Integer orderId = orderdao.lastInsertId();
+            order.setOrderId(orderId);
+            return order;
         }
         return null;
     }
@@ -102,10 +107,11 @@ public class UserServiceImp implements UserService {
     @Override
     public int addDishCollect(Integer dishId, Integer userId) {
 
+        return 1;
     }
 
     @Override
     public int addShopCollect(Integer shopId, Integer userId) {
-
+        return 0;
     }
 }

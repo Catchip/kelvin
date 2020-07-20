@@ -90,7 +90,7 @@
     </delete>
     
     
-    <select id="findShopCollectById" parameterType="java.lang.Integer"
+    <select id="findShopCollectById" 
         resultType="grp.team7.kelvin.entity.Shop">
         SELECT
            *

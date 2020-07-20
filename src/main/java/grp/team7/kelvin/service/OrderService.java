@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface OrderService {
 
-    public List<OrderItem> getOrderItems(Integer orderId); 
-    public int addOrderItems(List<OrderItem> orderitems);
+    public List<OrderItem> getOrderItems(Integer orderId);
+    public int addOrderItems(List<OrderItem> orderItems, Integer orderId);
     public int deleteOrderItem(Integer orderId, Integer dishId);
 }

@@ -10,8 +10,9 @@ import java.util.List;
 public interface OrderItemDao {
 
     public List<OrderItem> findByOrder(Integer orderId);
-    public int add(OrderItem orderitem);
-    public int update(OrderItem orderitem);
-    public int delete(Integer orderId, Integer dishId);
+    public int add(OrderItem orderItem);
+    public int addByList(List<OrderItem> orderItems);
+    public int update(OrderItem orderItem);
+    public int delete (Integer orderId, Integer dishId);
     public int deleteByOrder(Integer orderId);
 }

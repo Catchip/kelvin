@@ -20,7 +20,18 @@
         (#{orderId},#{dishId},#{dishPrice},#{dishNum},#{dishClass})
     </insert>
 
-    <delete id="deleteByOrder" parameterType="java.lang.Integer">
+    <insert id="addByList" keyProperty="Id" useGeneratedKeys="true"
+        parameterType="java.util.List">
+        INSERT INTO 
+        orderitem(order_id,dish_id,dish_price,dish_num,dish_class)
+        VALUES
+    <foreach collection="list" item="item" index="index" separator="," >
+        (#{item.orderId},#{item.dishId},#{item.dishPrice},#{item.dishNum},#{item.dishClass})
+    </foreach> 
+
+    </insert>
+
+    <delete id="deleteByOrder" parameterType="java.lang.Integer" >
         DELETE FROM orderitem
         WHERE order_id = #{orderId}
     </delete>
@@ -38,7 +49,7 @@
         WHERE id = #{id}
     </update>
 
-    <delete id="delete" parameterType="java.lang.Integer">
+    <delete id="delete" parameterType="java.lang.Integer" >
         DELETE FROM orderitem
         WHERE order_id = #{orderId} AND dish_id = #{dishId}
     </delete>

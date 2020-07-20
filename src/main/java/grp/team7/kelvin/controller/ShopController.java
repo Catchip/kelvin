@@ -28,7 +28,7 @@ public class ShopController {
     @RequestMapping(value = "/dishes")
     public @ResponseBody String getDishes(@RequestParam(value = "shopid", required = true) Integer shopId) {
         List<Dish> dishes = shopService.getDishes(shopId);
-        String result = JSON.toJSONString(dishes, SerializerFeature.BeanToArray);
+        String result = JSON.toJSONString(dishes);
         System.out.println(result);
         return result;
     }
@@ -37,7 +37,7 @@ public class ShopController {
     @RequestMapping("/orders")
     public @ResponseBody String getOrders(@RequestParam(value = "shopid", required = true) Integer shopId) {
         List<Order> orders = shopService.getOrders(shopId);
-        String result = JSON.toJSONString(orders, SerializerFeature.BeanToArray);
+        String result = JSON.toJSONString(orders);
         System.out.println(result);
         return result;
     }
@@ -45,7 +45,7 @@ public class ShopController {
     @RequestMapping("/orders/orderitems")
     public @ResponseBody String getOrderItems(@RequestParam(value = "orderid", required = true) Integer orderId) {
         List<OrderItem> orderitems = orderService.getOrderItems(orderId);
-        String result = JSON.toJSONString(orderitems, SerializerFeature.BeanToArray);
+        String result = JSON.toJSONString(orderitems);
         return result;
     }
 

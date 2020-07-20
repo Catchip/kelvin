@@ -19,7 +19,11 @@ import grp.team7.kelvin.service.UserService;
 import grp.team7.kelvin.service.impl.*;
 import grp.team7.kelvin.entity.*;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = "/user", produces = "application/json;charset=utf-8")
@@ -73,7 +77,7 @@ public class UserController {
         Integer userId = jsObject.getInteger("userId");
         List<Order> orders = userService.getOrders(userId);
         //还不知道如何返回List
-        String result = JSON.toJSONString(orders, SerializerFeature.BeanToArray);
+        String result = JSON.toJSONString(orders);
         return result;
     }
 
@@ -82,17 +86,25 @@ public class UserController {
         JSONObject jsObject = JSONObject.parseObject(data);
         Integer userId = jsObject.getInteger("userId");
         List<Shop> shops = userService.getShops(userId);
-        //还不知道如何返回List
-        String result = JSON.toJSONString(shops, SerializerFeature.BeanToArray);
+        String result = JSON.toJSONString(shops);
         return result;
     }
 
-    // not tested
     @RequestMapping("/addorder.do")
     public @ResponseBody String userAddOrder(@RequestBody String data) {
-        //生成UUID作为验证码
-        JSONObject jsObject = JSONObject.parseObject(data);
-        String result = "not finished";
+        JSONArray jsonArray = JSONObject.parseArray(data);
+        JSONObject jsonObject = (JSONObject) jsonArray.get(0);
+
+        Order order = JSONObject.parseObject(jsonObject.toJSONString(), Order.class);
+
+        List<OrderItem> orderitems = new ArrayList<>();
+        orderitems = jsonArray.stream().map(e->JSONObject.parseObject(((JSONObject)e).toJSONString(), OrderItem.class)).collect(Collectors.toList());
+        orderitems.remove(0);
+
+        System.out.println(orderitems);
+        order = userService.addOrder(order);
+        int flag = orderService.addOrderItems(orderitems, order.getOrderId());
+        String result = String.format("{\"addorderflag\":%d}", flag);
         return result;
     }
 
@@ -127,7 +139,7 @@ public class UserController {
         JSONObject jsonObject = JSONObject.parseObject(data);
         Integer userId = jsonObject.getInteger("userId");
         List<Dish> dishes = userService.getDishCollect(userId);
-        String result = JSON.toJSONString(dishes, SerializerFeature.BeanToArray);
+        String result = JSON.toJSONString(dishes);
         return result;
     }
 
@@ -159,7 +171,7 @@ public class UserController {
         JSONObject jsonObject = JSONObject.parseObject(data);
         Integer userId = jsonObject.getInteger("userId");
         List<Shop> shops = userService.getShopCollect(userId);
-        String result = JSON.toJSONString(shops, SerializerFeature.BeanToArray);
+        String result = JSON.toJSONString(shops);
         return result;
     }
 
@@ -167,7 +179,7 @@ public class UserController {
     @RequestMapping("/orderitems")
     public @ResponseBody String getorderitems(@RequestParam(value = "orderid") Integer orderId) {
         List<OrderItem> orderitems = orderService.getOrderItems(orderId);
-        String result = JSON.toJSONString(orderitems, SerializerFeature.BeanToArray);
+        String result = JSON.toJSONString(orderitems);
         return result;
     }
 }

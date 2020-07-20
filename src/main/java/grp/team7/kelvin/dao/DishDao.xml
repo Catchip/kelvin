@@ -11,15 +11,20 @@
             dish
         WHERE shop_id = #{shopId}
     </select>
-    <select id="findById" resultType="grp.team7.kelvin.entity.Dish">
+
+    <select id="findByIdList" resultType="grp.team7.kelvin.entity.Dish" >
         SELECT
             *
         FROM
             dish
-        WHERE dish_id = #{dishId}
+        WHERE dish_id IN 
+      <foreach item="dishId" index="index" collection="list"
+          open="(" separator="," close=")">
+            #{dishId}
+      </foreach>
     </select>
 
-    <select id="findAllWithClass" resultType="grp.team7.kelvin.entity.Dish">
+    <select id="findAllWithClass" resultType="grp.team7.kelvin.entity.Dish" >
         SELECT
             *
         FROM
@@ -27,7 +32,7 @@
         WHERE class = #{dishClass}
     </select>
     
-    <select id="findAllWithShopAndClass" resultType="grp.team7.kelvin.entity.Dish">
+    <select id="findAllWithShopAndClass" resultType="grp.team7.kelvin.entity.Dish" >
         SELECT
             *
         FROM
@@ -70,7 +75,7 @@
     </update>
 
 
-    <delete id="deleteDish" parameterType="java.lang.Integer">
+    <delete id="deleteDish" parameterType="java.lang.Integer" >
         DELETE FROM dish
         WHERE dish_id = #{dishId}
     </delete>
