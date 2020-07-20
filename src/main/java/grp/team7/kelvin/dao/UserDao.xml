@@ -116,4 +116,36 @@
         WHERE
             user_account=#{param1} AND user_passwordsha256=#{param2}
     </select>
+
+    <select id="checkAdminRoleById" resultType="java.lang.Integer">
+        SELECT
+            role
+        FROM
+            admin
+        WHERE
+            user_id=#{id}
+    </select>
+
+    <update id="updateUserRole">
+        UPDATE
+            admin
+        SET
+            role=#{role}
+        WHERE
+            user_id=#{id}
+    </update>
+
+    <insert id="insertAdmin">
+        INSERT INTO
+            admin(user_id,role)
+        VALUES
+            (#{id},#{role})
+    </insert>
+
+    <delete id="deleteAdmin">
+        DELETE FROM 
+            admin
+        WHERE 
+            user_id = #{id}
+    </delete>
 </mapper>
