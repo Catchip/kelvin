@@ -18,4 +18,7 @@ public interface UserService {
     public Order addOrder(Order order);
     public int addDishCollect(Integer dishId, Integer userId);
     public int addShopCollect(Integer shopId, Integer userId);
+
+    public Integer checkAdmin(int userId);
+    public int updateUserRole(int userId, int role);
 }
