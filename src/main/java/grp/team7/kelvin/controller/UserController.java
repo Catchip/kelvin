@@ -175,6 +175,27 @@ public class UserController {
         return result;
     }
 
+    @RequestMapping("/getcollectstausofshop")
+    public @ResponseBody String getShopCollectStatus(@RequestBody String data) {
+        JSONObject jsonObject = JSONObject.parseObject(data);
+        Integer userId = jsonObject.getInteger("userId");
+        Integer shopId = jsonObject.getInteger("shopId");
+        int flag = userService.getShopCollectStatus(userId, shopId);
+        String result = String.format("{\"collected\":%d}", flag);
+        return result;
+
+    }
+
+    @RequestMapping("/getcollectstausofdish")
+    public @ResponseBody String getDishCollectStatus(@RequestBody String data) {
+        JSONObject jsonObject = JSONObject.parseObject(data);
+        Integer userId = jsonObject.getInteger("userId");
+        Integer dishId = jsonObject.getInteger("dishId");
+        int flag = userService.getDishCollectStatus(userId, dishId);
+        String result = String.format("{\"collected\":%d}", flag);
+        return result;
+    }
+
     // not tested
     @RequestMapping("/orderitems")
     public @ResponseBody String getorderitems(@RequestParam(value = "orderid") Integer orderId) {

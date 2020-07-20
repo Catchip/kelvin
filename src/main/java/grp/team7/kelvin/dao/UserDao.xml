@@ -21,7 +21,7 @@
         WHERE user_account = #{userAccount}
     </select>
 
-    <select id="findAll" resultType="grp.team7.kelvin.entity.User">
+    <select id="findAll" resultType="grp.team7.kelvin.entity.User" >
         SELECT * FROM user
     </select>
     <!--<select id="findByKeyword" resultType="grp.team7.kelvin.entity.User">-->
@@ -60,7 +60,7 @@
     </insert>
     
     <update id="updateUser"
-        parameterType="grp.team7.kelvin.entity.User">
+        parameterType="grp.team7.kelvin.entity.User" >
         UPDATE user
         <set>
         user_name=#{userName}, 
@@ -84,7 +84,7 @@
         WHERE user_id = #{userId}
     </update>
     
-    <delete id="deleteUser" parameterType="java.lang.Integer">
+    <delete id="deleteUser" parameterType="java.lang.Integer" >
         DELETE FROM user
         WHERE user_id = #{id}
     </delete>
@@ -99,6 +99,15 @@
         WHERE shop_id IN ( SELECT shop_id FROM shopcollect WHERE user_id=#{userId}   )
     </select>
 
+    <select id="findShopCollectByKeys" 
+        resultType="java.lang.Integer">
+        SELECT
+           shop_id
+        FROM
+            shopcollect
+        WHERE user_id = #{param1} AND shop_id = #{param2}
+    </select>
+
     <select id="findDishCollectById" parameterType="java.lang.Integer"
         resultType="grp.team7.kelvin.entity.Dish">
         SELECT
@@ -108,7 +117,16 @@
         WHERE dish_id IN ( SELECT dish_id FROM dishcollect WHERE user_id=#{userId}   )
     </select>
 
-    <select id="findUserByAcAndPa" resultType="grp.team7.kelvin.entity.User">
+    <select id="findDishCollectByKeys" 
+        resultType="java.lang.Integer">
+        SELECT
+           dish_id
+        FROM
+            dishcollect
+        WHERE user_id = #{param1} AND dish_id = #{param2}
+    </select>
+
+    <select id="findUserByAcAndPa" resultType="grp.team7.kelvin.entity.User" >
         SELECT
             * 
         FROM
@@ -116,4 +134,18 @@
         WHERE
             user_account=#{param1} AND user_passwordsha256=#{param2}
     </select>
+
+    <insert id="addDishCollect" >
+        INSERT INTO 
+        dishcollect(dish_id,user_id,collect_time)
+        VALUES
+        (#{param2},#{param1},#{param3})
+    </insert>
+
+    <insert id="addShopCollect" >
+        INSERT INTO 
+        shopcollect(shop_id,user_id,collect_time)
+        VALUES
+        (#{param2},#{param1},#{param3})
+    </insert>
 </mapper>
