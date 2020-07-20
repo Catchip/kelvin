@@ -9,6 +9,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,17 +36,24 @@ public class UserController {
     OrderServiceImp orderService;
 
 
+    /**
+     * <b>POST</b>
+     * 用户登录的表现层部分
+     * @param data JSON字符串，接受的参数为userAccount,userPassword
+     */
     @RequestMapping("/login")
     public @ResponseBody String userSignIn(@RequestBody String data) {
         System.out.println("进入测试");
         JSONObject jsObject = JSONObject.parseObject(data);
         String userAccount = jsObject.getString("userAccount");
-        String userPassword = jsObject.getString("userPasswordsha256");
+        String userPassword = jsObject.getString("userPassword");
         User user = userService.signIn(userAccount, userPassword);
         System.out.println(user);
         if (user != null) {
-            String userjson = JSON.toJSONString(user);
-            return userjson;
+            JSONObject userjson = (JSONObject)JSON.toJSON(user);
+            userjson.put("role", userService.getUserRole(user.getUserId()));
+            String jsonString = userjson.toJSONString();
+            return jsonString;
         }
         return null;
     }
@@ -64,8 +72,10 @@ public class UserController {
         Integer userId = jsObject.getInteger("userId");
         User user = userService.getInformation(userId);
         if (user != null) {
-            String userjson = JSON.toJSONString(user);
-            return userjson;
+            JSONObject userjson = (JSONObject)JSON.toJSON(user);
+            userjson.put("role", userService.getUserRole(user.getUserId()));
+            String jsonString = userjson.toJSONString();
+            return jsonString;
         }
         return null;
     }
@@ -202,5 +212,44 @@ public class UserController {
         List<OrderItem> orderitems = orderService.getOrderItems(orderId);
         String result = JSON.toJSONString(orderitems);
         return result;
+    }
+
+    /**
+     * <b>POST</b>
+     * 改变用户的管理角色
+     * @param data 传入的数据，内容为
+     * <table>
+     * <tr>
+     *  <td>userId</td>
+     *  <td>你要改变的用户的id</td>
+     * </tr>
+     * <tr>
+     *  <td>role</td>
+     *  <td>你要改变的用户的角色</td>
+     * </tr>
+     * </table>
+     *
+     * @return 返回字符串,"OK"表示成功，“failed!”表示失败。
+     */
+    @RequestMapping("/updateRole")
+    @CrossOrigin("*")
+    public @ResponseBody String updateAdmin(@RequestBody String data) {
+        JSONObject jsonObject = JSONObject.parseObject(data);
+        Integer userId = null;
+        Integer role = null;
+        try {
+            userId = jsonObject.getInteger("userId");
+            role = jsonObject.getInteger("role");
+            if (role == null || userId == null) {
+                throw new NullPointerException();
+            }
+        } catch (NullPointerException e) {
+            System.out.println("你在 /user/updateRole 处的传入参数不正确！");
+            e.printStackTrace();
+            return "failed!";
+        }
+
+        userService.updateUserRole(userId, role);
+        return "OK";
     }
 }

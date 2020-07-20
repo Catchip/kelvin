@@ -22,11 +22,11 @@ public interface UserService {
     public int getShopCollectStatus(Integer userId, Integer shopId);
 
     /**
-     * 检查用户的管理员身份
+     * 获得用户的管理员身份
      * @param user 检查的用户类
      * @return 返回用户的角色编号。规定0为非管理员，1为普通管理员，2为超级管理员。
      */
-    public int checkAdmin(int userId);
+    public int getUserRole(int userId);
 
     /**
      * 修改用户的管理员身份

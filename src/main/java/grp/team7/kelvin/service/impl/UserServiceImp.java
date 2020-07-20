@@ -136,7 +136,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public int checkAdmin(int userId) {
+    public int getUserRole(int userId) {
         Integer result =  userDao.checkAdminRoleById(userId);
         if (result == null) {
             return 0;
