@@ -15,9 +15,12 @@ public interface UserService {
     public List<Shop> getShops(Integer user_Id);
     public List<Order>  getOrders(Integer user_Id);
     public int addShop(Shop shop);
+    public int deleteShop(Integer shopId);
     public Order addOrder(Order order);
     public int addDishCollect(Integer dishId, Integer userId);
     public int addShopCollect(Integer shopId, Integer userId);
     public int getDishCollectStatus(Integer userId, Integer dishId);
     public int getShopCollectStatus(Integer userId, Integer shopId);
+    public List<Dish> getAllDishes();
+    public List<Shop> getAllShops();
 }
