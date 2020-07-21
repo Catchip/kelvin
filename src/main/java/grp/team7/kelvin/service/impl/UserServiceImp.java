@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import grp.team7.kelvin.dao.UserDao;
 import grp.team7.kelvin.dao.ShopDao;
@@ -90,6 +91,7 @@ public class UserServiceImp implements UserService {
         //生成UUID
         //String uuid = "sdfsd";
         //order.setUuid(uuid);
+        order.setUuid(UUID.randomUUID().toString());
         if (orderDao.addOrder(order) == 1) {
             Integer orderId = orderDao.lastInsertId();
             order.setOrderId(orderId);
