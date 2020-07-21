@@ -9,18 +9,12 @@ public interface UserService {
     public User updateInformation(User user);
     public User getInformation(Integer userId);
     public int updatePassword(User user);
-    public List<Dish> getDishCollect(Integer user_Id);
-    public List<Shop> getShopCollect(Integer user_Id);
     public User signIn(String userAccount, String password);
     public List<Shop> getShops(Integer user_Id);
     public List<Order>  getOrders(Integer user_Id);
     public int addShop(Shop shop);
     public int deleteShop(Integer shopId);
     public Order addOrder(Order order);
-    public int addDishCollect(Integer dishId, Integer userId);
-    public int addShopCollect(Integer shopId, Integer userId);
-    public int getDishCollectStatus(Integer userId, Integer dishId);
-    public int getShopCollectStatus(Integer userId, Integer shopId);
 
     /**
      * 获得用户的管理员身份
@@ -35,6 +29,14 @@ public interface UserService {
      * @param role 需要改成的用户身份。0为非管理员，1为普通管理员，2为超级管理员。
      */
     public int updateUserRole(int userId, int role);
+
     public List<Dish> getAllDishes();
     public List<Shop> getAllShops();
+
+
+    /**
+     * 删除订单
+     * @param orderId 需要删除的订单的Id
+     */
+    public void deleteOrder(Integer orderId);
 }

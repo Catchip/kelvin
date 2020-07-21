@@ -62,14 +62,22 @@ public class OrderController {
         System.out.println(orderitems);
         order = userService.addOrder(order);
         int flag = orderService.addOrderItems(orderitems, order.getOrderId());
-        String result = String.format("{\"addorderflag\":%d}", flag);
-        return result;
+        if (flag == 1)
+            return "OK";
+        else return "NOT OK";
     }
 
-    @RequestMapping("/orderitems")
+    @RequestMapping("/info")
     public @ResponseBody String getOrderItems(@RequestParam(value = "orderid", required = true) Integer orderId) {
         List<OrderItem> orderitems = orderService.getOrderItems(orderId);
         String result = JSON.toJSONString(orderitems);
         return result;
+    }
+
+
+    @RequestMapping("/delete")
+    public @ResponseBody String deleteOrder(@RequestParam(value = "orderid", required = true) Integer orderId) {
+        userService.deleteOrder(orderId);
+        return "OK";
     }
 }

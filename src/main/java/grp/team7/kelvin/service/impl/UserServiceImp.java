@@ -9,6 +9,7 @@ import grp.team7.kelvin.dao.UserDao;
 import grp.team7.kelvin.dao.ShopDao;
 import grp.team7.kelvin.dao.DishDao;
 import grp.team7.kelvin.dao.OrderDao;
+import grp.team7.kelvin.dao.OrderItemDao;
 import grp.team7.kelvin.entity.*;
 import grp.team7.kelvin.utils.SHA256Util;
 import grp.team7.kelvin.service.UserService;
@@ -27,6 +28,8 @@ public class UserServiceImp implements UserService {
     @Autowired
     private DishDao dishDao;
 
+    @Autowired
+    private OrderItemDao orderItemDao;
 
     @Override
     public int signUp(User user) {
@@ -67,15 +70,6 @@ public class UserServiceImp implements UserService {
         return userDao.updateUser(user);
     }
 
-    @Override
-    public List<Dish> getDishCollect(Integer user_id) {
-        return userDao.findDishCollectById(user_id);
-    }
-
-    @Override
-    public List<Shop> getShopCollect(Integer user_id) {
-        return userDao.findShopCollectById(user_id);
-    }
 
     @Override
     public User signIn(String userAccount, String password) {
@@ -108,36 +102,6 @@ public class UserServiceImp implements UserService {
         return userDao.findById(userId);
     }
 
-    @Override
-    public int addDishCollect(Integer dishId, Integer userId) {
-        Date date = new Date();
-        if (userDao.findDishCollectByKeys(userId, dishId) == null)
-            return userDao.addDishCollect(userId, dishId, date);
-        else
-            return 0;
-    }
-
-    @Override
-    public int addShopCollect(Integer shopId, Integer userId) {
-        Date date = new Date();
-        if (userDao.findShopCollectByKeys(userId, shopId) == null)
-            return userDao.addShopCollect(userId, shopId, date);
-        else return 0;
-    }
-
-    @Override
-    public int getDishCollectStatus(Integer userId, Integer dishId) {
-        if (userDao.findDishCollectByKeys(userId, dishId) == null)
-            return 0;
-        else return 1;
-    }
-
-    @Override
-    public int getShopCollectStatus(Integer userId, Integer shopId) {
-        if (userDao.findShopCollectByKeys(userId, shopId) == null)
-            return 0;
-        else return 1;
-    }
 
     @Override
     public int getUserRole(int userId) {
@@ -177,4 +141,9 @@ public class UserServiceImp implements UserService {
         return shopDao.findAll();
     }
 
+    @Override
+    public void deleteOrder(Integer orderId) {
+        orderItemDao.deleteByOrder(orderId);
+        orderDao.deleteOrder(orderId);
+    }
 }
