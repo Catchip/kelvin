@@ -36,6 +36,22 @@ public class CollectController {
         else return "NOT OK";
     }
 
+    @RequestMapping("/delete")
+    public @ResponseBody String deleteCollect(@RequestBody String data) {
+        JSONObject jsonObject = JSONObject.parseObject(data);
+        Integer dishColletId = jsonObject.getInteger("dishCollectId");
+        Integer shopCollectId = jsonObject.getInteger("shopCollectId");
+        int flag = 1;
+        if (dishColletId != null)
+            flag = collectService.deleteDishCollect(dishColletId);
+        else if (shopCollectId != null)
+            flag = collectService.deleteShopCollect(shopCollectId);
+        else return "NOT OK";
+
+        if (flag == 1) return "OK";
+        else return "NOT OK";
+    }
+
     @RequestMapping("/list")
     public @ResponseBody String listCollect(@RequestBody String data) {
         JSONObject jsonObject = JSONObject.parseObject(data);

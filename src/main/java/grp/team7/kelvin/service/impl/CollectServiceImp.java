@@ -56,4 +56,14 @@ public class CollectServiceImp implements CollectService {
             return 0;
         else return 1;
     }
+
+    @Override
+    public int deleteShopCollect(Integer id) {
+        return collectDao.deleteShopCollect(id);
+    }
+
+    @Override
+    public int deleteDishCollect(Integer id) {
+        return collectDao.deleteDishCollect(id);
+    }
 }

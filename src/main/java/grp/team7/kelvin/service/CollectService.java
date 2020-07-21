@@ -16,5 +16,7 @@ public interface CollectService {
     public int getShopCollectStatus(Integer userId, Integer shopId);
     public List<Dish> getDishCollect(Integer user_Id);
     public List<Shop> getShopCollect(Integer user_Id);
+    public int deleteShopCollect(Integer id);
+    public int deleteDishCollect(Integer id);
 
 }

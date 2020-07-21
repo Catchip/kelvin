@@ -12,6 +12,15 @@
         WHERE user_id = #{param1} AND shop_id = #{param2}
     </select>
 
+    <select id="findShopCollectById" parameterType="java.lang.Integer"
+        resultType="grp.team7.kelvin.entity.Shop">
+        SELECT
+            *
+        FROM
+            shop
+        WHERE shop_id IN ( SELECT shop_id FROM shopcollect WHERE user_id=#{userId}   )
+    </select>
+
     <select id="findDishCollectById" parameterType="java.lang.Integer"
         resultType="grp.team7.kelvin.entity.Dish">
         SELECT
@@ -30,17 +39,27 @@
         WHERE user_id = #{param1} AND dish_id = #{param2}
     </select>
 
-    <insert id="addDishCollect" >
+    <insert id="addDishCollect" keyProperty="id" useGeneratedKeys ="true" >
         INSERT INTO 
         dishcollect(dish_id,user_id,collect_time)
         VALUES
         (#{param2},#{param1},#{param3})
     </insert>
 
-    <insert id="addShopCollect" >
+    <insert id="addShopCollect"  keyProperty="id" useGeneratedKeys ="true" >
         INSERT INTO 
         shopcollect(shop_id,user_id,collect_time)
         VALUES
         (#{param2},#{param1},#{param3})
     </insert>
+
+    <delete id="deleteDishCollect" parameterType="java.lang.Integer" >
+        DELETE FROM dishcollect
+        WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteShopCollect" parameterType="java.lang.Integer" >
+        DELETE FROM shopcollect
+        WHERE id = #{id}
+    </delete>
 </mapper>

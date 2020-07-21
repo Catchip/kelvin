@@ -44,7 +44,8 @@ public class OrderServiceImp implements OrderService {
             orderitem.setDishPrice(dish.getPrice());
             orderitem.setDishClass(dish.getDishClass());
         }
-        return orderitemdao.addByList(orderItems);
+        orderitemdao.addByList(orderItems);
+        return 1;
     }
 
     public int deleteOrderItem(Integer orderId, Integer dishId) {

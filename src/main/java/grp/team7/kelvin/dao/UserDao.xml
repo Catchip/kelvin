@@ -63,22 +63,26 @@
         parameterType="grp.team7.kelvin.entity.User" >
         UPDATE user
         <set>
+        <if test="userName !=null">
         user_name=#{userName}, 
+        </if>
+        <if test="userSex !=null">
         user_sex=#{userSex},
+        </if>
         <if test="userAccount != null">
-        user_account = #{userAccount}
+        user_account = #{userAccount},
         </if>
         <if test="userPasswordsha256 != null">
         user_passwordsha256 = #{userPasswordsha256},
         </if>
         <if test="userMail != null">
-        user_mail = #{userMail}
+        user_mail = #{userMail},
         </if>
         <if test="userTelephone != null">
-        user_telephone = #{userTelephone}
+        user_telephone = #{userTelephone},
         </if>
         <if test="userUpdatetime != null">
-        user_updatetime = #{userUpdatetime}
+        user_updatetime = #{userUpdatetime},
         </if>
         </set>
         WHERE user_id = #{userId}

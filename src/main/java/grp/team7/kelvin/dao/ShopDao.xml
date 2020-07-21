@@ -38,15 +38,33 @@
         parameterType="grp.team7.kelvin.entity.Shop">
         UPDATE shop
         <set>
+        <if test="shopName !=null">
         shop_name=#{shopName}, 
+        </if>
+        <if test="shopTelephone !=null">
         shop_telephone = #{shopTelephone},
+        </if>
+        <if test="shopAddress !=null">
         shop_address = #{shopAddress},
+        </if>
+        <if test="shopPicture !=null">
         shop_picture = #{shopPicture},
+        </if>
+        <if test="shopClass !=null">
         shop_class = #{shopClass},
+        </if>
+        <if test="shopCreatetime !=null">
         shop_createtime = #{shopCreatetime},
-        shop_starttime = #{shopStarttime}
-        shop_updatetime = #{shopUpdatetime}
-        shop_endtime = #{shopEndtime}
+        </if>
+        <if test="shopStarttime !=null">
+        shop_starttime = #{shopStarttime},
+        </if>
+        <if test="shopUpdatetime !=null">
+        shop_updatetime = #{shopUpdatetime},
+        </if>
+        <if test="shopEndtime !=null">
+        shop_endtime = #{shopEndtime},
+        </if>
         </set>
         WHERE shop_id = #{shopId}
     </update>

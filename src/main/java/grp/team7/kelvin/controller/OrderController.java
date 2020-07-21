@@ -30,23 +30,23 @@ public class OrderController {
     @Autowired
     OrderServiceImp orderService;
 
-    @RequestMapping("/listbyuser")
+    @RequestMapping("/list")
     public @ResponseBody String userOrders(@RequestBody String data) {
         JSONObject jsObject = JSONObject.parseObject(data);
         Integer userId = jsObject.getInteger("userId");
-        List<Order> orders = userService.getOrders(userId);
-        //还不知道如何返回List
+        Integer shopId = jsObject.getInteger("shopId");
+        List<Order> orders = new ArrayList<>();
+        if (userId != null) {
+            orders = userService.getOrders(userId);
+        } else if (shopId != null) {
+            orders = shopService.getOrders(shopId);
+        } else {
+            orders = shopService.getOrders(shopId);
+        }
         String result = JSON.toJSONString(orders);
         return result;
     }
 
-    @RequestMapping("/listbyshop")
-    public @ResponseBody String getOrders(@RequestParam(value = "shopid", required = true) Integer shopId) {
-        List<Order> orders = shopService.getOrders(shopId);
-        String result = JSON.toJSONString(orders);
-        System.out.println(result);
-        return result;
-    }
 
     @RequestMapping("/create")
     public @ResponseBody String userAddOrder(@RequestBody String data) {

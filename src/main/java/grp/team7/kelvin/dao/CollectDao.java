@@ -18,5 +18,7 @@ public interface CollectDao {
     public Integer findShopCollectByKeys(Integer userId, Integer shopId);
     public int addDishCollect(Integer userId, Integer dishId, Date collectDate);
     public int addShopCollect(Integer userId, Integer shopId, Date collectDate);
+    public int deleteDishCollect(Integer id);
+    public int deleteShopCollect(Integer id);
 
 }
