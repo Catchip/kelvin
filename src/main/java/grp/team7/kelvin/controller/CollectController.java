@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import grp.team7.kelvin.service.impl.CollectServiceImp;
 import grp.team7.kelvin.entity.*;
 
+@CrossOrigin("*")
 @Controller
 @RequestMapping(value = "/collect", produces = "application/json;charset=utf-8")
 public class CollectController {

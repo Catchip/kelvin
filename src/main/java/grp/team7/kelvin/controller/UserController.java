@@ -1,31 +1,21 @@
 package grp.team7.kelvin.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.parser.Feature;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 
-import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import grp.team7.kelvin.service.UserService;
-import grp.team7.kelvin.service.impl.*;
+import grp.team7.kelvin.service.impl.UserServiceImp;
+import grp.team7.kelvin.service.impl.OrderServiceImp;
 import grp.team7.kelvin.entity.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
+@CrossOrigin("*")
 @Controller
 @RequestMapping(value = "/user", produces = "application/json;charset=utf-8")
 public class UserController {
@@ -42,7 +32,6 @@ public class UserController {
      * @param data JSON字符串，接受的参数为userAccount,userPassword
      */
     @RequestMapping("/login")
-    @CrossOrigin("*")
     public @ResponseBody String userSignIn(@RequestBody String data) {
         JSONObject jsObject = JSONObject.parseObject(data);
         String userAccount = jsObject.getString("userAccount");
@@ -120,7 +109,6 @@ public class UserController {
      * @return 返回字符串,"OK"表示成功，“failed!”表示失败。
      */
     @RequestMapping("/updateRole")
-    @CrossOrigin("*")
     public @ResponseBody String updateAdmin(@RequestBody String data) {
         JSONObject jsonObject = JSONObject.parseObject(data);
         Integer userId = null;
