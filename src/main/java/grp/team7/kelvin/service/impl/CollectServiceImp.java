@@ -29,10 +29,7 @@ public class CollectServiceImp implements CollectService {
     @Override
     public int addDishCollect(Integer dishId, Integer userId) {
         Date date = new Date();
-        if (collectDao.findDishCollectByKeys(userId, dishId) == null)
-            return collectDao.addDishCollect(userId, dishId, date);
-        else
-            return 0;
+        return collectDao.addDishCollect(userId, dishId, date);
     }
 
     @Override

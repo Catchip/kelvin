@@ -37,6 +37,7 @@ public class ShopServiceImp implements ShopService {
 
     @Override
     public int addDish(Dish dish) {
+        dish.setStatus(false);
         return dishdao.addDish(dish);
     }
 

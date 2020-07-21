@@ -52,11 +52,9 @@ public class ShopController {
 
     @RequestMapping("/delete")
     public @ResponseBody String deleteShop(@RequestParam(value = "shopid", required = true) Integer shopId) {
-        int flag1 = shopService.deleteAllDish(shopId);
-        int flag2 = userService.deleteShop(shopId);
-        if (flag1 == 1 && flag2 == 1)
-            return "OK";
-        else return "NOT OK";
+        shopService.deleteAllDish(shopId);
+        userService.deleteShop(shopId);
+        return "OK";
     }
 
 

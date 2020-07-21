@@ -7,25 +7,25 @@ import com.alibaba.fastjson.annotation.JSONField;
 import grp.team7.kelvin.utils.*;
 
 public class User {
-    @JSONField(name="userId")
+    @JSONField(name = "userId")
     private Integer userId;// 用户ID
-    @JSONField(name="userName")
+    @JSONField(name = "userName")
     private String userName;// 用户姓名
-    @JSONField(name="userSex")
+    @JSONField(name = "userSex")
     private Integer userSex;// 用户性别，1为男性，0为女性
-    @JSONField(name="userAccount")
+    @JSONField(name = "userAccount")
     private String userAccount;// 用户名称
-    @JSONField(name="userPasswordsha256")
+    @JSONField(name = "userPasswordsha256")
     private String userPasswordsha256; // 用户密码
-    @JSONField(name="userMail")
+    @JSONField(name = "userMail")
     private String userMail;// 用户邮箱
-    @JSONField(name="userPicture")
+    @JSONField(name = "userPicture")
     private String userPicture; //用户头像图片
-    @JSONField(name="userTelephone")
+    @JSONField(name = "userTelephone")
     private String userTelephone; // 用户电话
-    @JSONField(name="userCreatetime")
+    @JSONField(name = "userCreatetime")
     private Date userCreatetime;// 用户注册时间
-    @JSONField(name="userUpdatetime")
+    @JSONField(name = "userUpdatetime")
     private Date userUpdatetime;// 用户最后一次修改时间
 
     public User() {
@@ -78,6 +78,7 @@ public class User {
         return userSex;
     }
     public String getUserSexStr() {
+        if (userSex == null) return "未设定";
         switch (userSex) {
         case 0:
             return "女";
