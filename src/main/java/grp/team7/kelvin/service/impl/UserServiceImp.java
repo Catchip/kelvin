@@ -33,7 +33,8 @@ public class UserServiceImp implements UserService {
 
     @Override
     public int signUp(User user) {
-        user.setUserPasswordsha256(SHA256Util.stringToSHA256(user.getUserPasswordsha256()));
+        String passwordsha256 = SHA256Util.stringToSHA256(user.getUserPasswordsha256());
+        user.setUserPasswordsha256(passwordsha256);
         User user1 = userDao.findByAccount(user.getUserAccount());
         if (user1 != null) {
             return 0;

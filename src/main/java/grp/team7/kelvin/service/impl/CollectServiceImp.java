@@ -4,15 +4,17 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import grp.team7.kelvin.service.CollectService;
 import grp.team7.kelvin.dao.CollectDao;
 import grp.team7.kelvin.entity.Dish;
 import grp.team7.kelvin.entity.Shop;
 
+@Service
 public class CollectServiceImp implements CollectService {
     @Autowired
-    CollectDao collectDao;
+    private CollectDao collectDao;
 
     @Override
     public List<Dish> getDishCollect(Integer user_id) {

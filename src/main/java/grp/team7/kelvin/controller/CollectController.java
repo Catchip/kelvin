@@ -10,15 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import grp.team7.kelvin.service.CollectService;
-import grp.team7.kelvin.service.impl.*;
+import grp.team7.kelvin.service.impl.CollectServiceImp;
 import grp.team7.kelvin.entity.*;
 
 @Controller
 @RequestMapping(value = "/collect", produces = "application/json;charset=utf-8")
 public class CollectController {
     @Autowired
-    CollectServiceImp collectService;
+    private CollectServiceImp collectService;
 
 
     @RequestMapping("/add")
