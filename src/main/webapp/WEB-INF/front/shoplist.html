@@ -1,0 +1,243 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>开饭了商家端——店铺列表</title>
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+<link type="text/css" rel="stylesheet" href="file/shoplist/styles.css" />
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/menu.js"></script>
+</head>
+
+<body>
+<div class="top"></div>
+<div id="header">
+	<div class="logo" >
+		<img src="images/logo.png" height="80px" alt="" style="vertical-align: middle; float: left;" />
+		<a href="index.html" style="font-size: 30px; color: #fff; float: left;height: 70px;">开饭了</a>
+		
+	</div>
+	
+	<div class="navigation">
+		<ul>
+		 	<li>欢迎您！</li>
+			<li>毛毛餐厅</li>
+			<li><a href="intro.html">个人中心</a></li>
+			<li><a href="login.html">退出</a></li>
+		</ul>
+	</div>
+</div>
+<div id="content">
+	<div class="left_menu">
+				<ul id="nav_dot">
+     <li>
+          <h4 class="M1"><span></span>首页</h4>
+          <div class="list-item none">
+            <a href='mainpage.html'>首页</a>
+            <a href='intro.html'>账号整体情况</a>           
+           </div>
+        </li>
+        <li>
+          <h4 class="M10"><span></span>我的资料</h4>
+          <div class="list-item none">
+            <a href='selfintro.html'>个人资料</a>
+          
+           </div>
+        </li>
+        <li>
+          <h4 class="M7"><span></span>我的店铺</h4>
+          <div class="list-item none">
+            <a href='shoplist.html'>店铺列表</a>
+           
+          </div>
+        </li>
+				<li>
+          <h4 class="M9"><span></span>我的商品</h4>
+          <div class="list-item none">
+            <a href='productlist.html'>商品列表</a>
+     
+          </div>
+        </li>
+				<li>
+          <h4 class="M2"><span></span>我的卖单</h4>
+          <div class="list-item none">
+            <a href='salelist.html'>卖单列表</a>
+          </div>
+        </li>
+				<li>
+          <h4  class="M6"><span></span>订单验证</h4>
+          <div class="list-item none">
+            <a href='verify.html'>订单验证</a>
+          </div>
+        </li>
+
+  </ul>
+		</div>
+		<div class="m-right">
+			<div class="right-nav">
+					<ul>
+							
+								<li style="margin-left:25px;">您当前的位置：</li>
+								<li>首页</li>
+								<li>></li>
+								<li>店铺列表</li>
+								
+						</ul>
+						
+					
+			</div>
+			<div class="main">
+				<div style="font-size: 25px;margin-left: 75px ;margin-top: 30px; color: 333333;">店铺列表
+				
+					
+					<a href="addnewshop.html"><input type='button' value='开通店铺' style="font-size: 18px;margin-left: 600px;margin-top: 10px;"></a>
+				</div>
+				<table id="testTble"  border=1 >
+			
+					<tr>
+						<td>店铺名称 </td>
+						<td>店铺地址</td>
+						<td>联系方式</td>
+						<td>店铺操作</td>
+					</tr>
+					<tr>
+						<td>毛毛饭店</td>
+						<td>西路一号</td>
+						<td>123456</td>
+						<td><input type='button' value='关闭' onclick='deleteTable(this)'> </td>
+					</tr>
+					<tr>
+						<td>文文便利店</td>
+						<td>西路二号</td>
+						<td>123457</td>
+						<td><input type='button' value='关闭' onclick='deleteTable(this)'>  </td>
+					</tr>
+				</table>
+				<form action="" method="get" style="margin-left: 300px;">
+				
+					<a href="">首页</a>
+					<a href="">上一页</a>
+					<a href="">下一页</a>
+					第<span style="color:red;font-weight:600">1</span>页 共
+					<span style="color:red;font-weight:600">1</span></span>页
+					<input type="text" class="page-input">
+					<input type="submit" class="page-btn" value="跳转">
+				</form>
+				<!-- 打开弹窗按钮 -->
+	
+				<!-- 弹窗 -->
+				<div id="myModal" class="modal">
+				
+					<!-- 弹窗内容 -->
+					<div class="modal-content">
+						<span class="close">&times;</span>
+						<p align="center" id="info">
+							开通新店铺</br>
+							店铺名称：<input type="text" id="username"></br>
+							店铺地址：<input type="text" id="email"></br>
+							联系方式：<input type="text" id="age">
+						</p>
+						<div align="center"><input type="button" id="add" value="添加" onclick="addRow()"></div>
+					</div>
+				
+			</div>
+		</div>
+</div>
+
+<div id="footer">
+	<p>
+		关于开饭了     |   服务协议      |    用户中心     |  开饭了客服     |   投诉中心
+	</br>
+		Copyright © 2012-2020 Kaifan. All Rights Reserved.
+	
+	</p>
+	
+
+</div>
+<script type="text/javascript">
+	//    三个文本框
+	//    一个添加按钮 按钮实现功能 添加信息到表格中
+	//    一个表格，行数动态增加的
+
+	function addRow() {
+		// 获取input元素节点数组
+		var arr = new Array();
+		var arr = new Array();
+		arr[0] = document.getElementById('username').value;
+		arr[1] = document.getElementById('email').value; 
+		arr[2] = document.getElementById('age').value;
+		arr[3] = "<input type='button' value='关闭' onclick='deleteTable(this)'>";
+		var x = document.getElementById('testTble').insertRow(-1); //获取第一行对象
+ 
+		for(var i=0;i<arr.length;i++){
+			x.insertCell(i).innerHTML = arr[i] ; //用循环把每个数据插入第一行的每一列
+		}
+		
+		modal.style.display = "none";
+
+/*
+		var inputNodes = document.getElementsByTagName("input");
+		var str = new String(inputNodes[0].value);
+		var str1 = new String(inputNodes[1].value);
+		var str2 = new String(inputNodes[2].value);
+		if((str.length > 0) && (str1.length > 0) && (str2.length > 0)) {
+			//添加一行 insertRow() 方法用于在表格中的指定位置插入一个新行
+			var newTr = testTble.insertRow(-1)
+			//添加四列 sertCell() 方法用于在 HTML 表的一行的指定位置插入一个空的 <td> 元素
+			var newTd0 = newTr.insertCell();
+			var newTd1 = newTr.insertCell();
+			var newTd2 = newTr.insertCell();
+			var newTd3 = newTr.insertCell();
+			//分别给每一列赋值
+
+			newTd3.innerText = inputNodes[0].value;
+			newTd2.innerText = inputNodes[1].value;
+			newTd1.innerText = inputNodes[2].value;
+			newTd0.innerHTML = "<input type='button' value='关闭' onclick='deleteTable(this)'>";
+			document.getElementById("username").value="";
+			document.getElementById("email").value="";
+			document.getElementById("age").value="";			
+			modal.style.display = "none";
+
+		} else {
+			alert("请先把信息填写完整！");
+			return;
+		}
+		*/
+	}
+
+	function deleteTable(r) {
+		//获取当前表格行号
+		var i = r.parentNode.parentNode.rowIndex;
+		//调用deleteRow()删除本行
+		document.getElementById('testTble').deleteRow(i);
+	}
+
+
+
+	var btn = document.getElementById("myBtn");
+	var modal = document.getElementById('myModal');
+	var span = document.querySelector('.close');
+	 
+	// 点击按钮打开弹窗
+	btn.onclick = function() {
+	    modal.style.display = "block";
+	}
+	 
+	// 点击 <span> (x), 关闭弹窗
+	span.onclick = function() {
+	    modal.style.display = "none";
+	}
+		 
+	
+ 
+	// 在用户点击其他地方时，关闭弹窗
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+</script>
+<script>navList(12);</script>
+</body>
+</html>
