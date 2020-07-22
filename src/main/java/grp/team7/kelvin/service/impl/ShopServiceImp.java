@@ -80,4 +80,19 @@ public class ShopServiceImp implements ShopService {
     public int deleteAllDish(Integer shopId) {
         return dishDao.deleteWithShop(shopId);
     }
+
+    @Override
+    public Shop getInfo(Integer shopId) {
+        return shopDao.findById(shopId);
+    }
+
+    @Override
+    public List<Shop> search(Shop shop) {
+        return shopDao.find(shop);
+    }
+
+    @Override
+    public List<Dish> searchDish(Dish dish) {
+        return dishDao.find(dish);
+    }
 }

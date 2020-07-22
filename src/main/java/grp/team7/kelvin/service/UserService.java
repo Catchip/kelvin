@@ -39,4 +39,7 @@ public interface UserService {
      * @param orderId 需要删除的订单的Id
      */
     public void deleteOrder(Integer orderId);
+
+    public List<User> search(User user);
+    public List<User> getAllUsers();
 }

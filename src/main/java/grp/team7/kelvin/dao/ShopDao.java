@@ -10,6 +10,7 @@ import java.util.List;
 public interface ShopDao {
 
     public Shop findById(Integer id);
+    public List<Shop> find(Shop shop);
     public int addShop(Shop shop);
     public int deleteShop(Integer id);
     public int updateShop(Shop shop);

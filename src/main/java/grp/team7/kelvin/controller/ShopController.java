@@ -1,6 +1,7 @@
 package grp.team7.kelvin.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,6 +57,23 @@ public class ShopController {
         userService.deleteShop(shopId);
         return "OK";
     }
+
+    @RequestMapping("/info")
+    public @ResponseBody String getShopInfo(@RequestParam(value = "shopid", required = true) Integer shopId) {
+        Shop shop = shopService.getInfo(shopId);
+        String result = JSON.toJSONString(shop);
+        return result;
+    }
+
+    @RequestMapping("/search")
+    public @ResponseBody String searchShop(@RequestBody String data ) {
+        Shop shop = JSONObject.parseObject(data, Shop.class);
+        List<Shop> shops = shopService.search(shop);
+        String result = JSON.toJSONString(shops);
+        return result;
+    }
+
+
 
 
     @RequestMapping("/list")

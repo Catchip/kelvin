@@ -7,6 +7,7 @@ import java.util.List;
 */
 public interface DishDao {
 
+    public List<Dish> find(Dish dish);
     public List<Dish> findAllWithShop(Integer shopId);
     public List<Dish> findByIdList(List<Integer> dishId);
     public Dish findById(Integer dishId);

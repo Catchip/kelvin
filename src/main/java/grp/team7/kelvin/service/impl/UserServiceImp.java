@@ -149,4 +149,14 @@ public class UserServiceImp implements UserService {
         orderItemDao.deleteByOrder(orderId);
         orderDao.deleteOrder(orderId);
     }
+
+    @Override
+    public List<User>  search(User user) {
+        return userDao.find(user);
+    }
+
+    @Override
+    public List<User>  getAllUsers() {
+        return userDao.findAll();
+    }
 }

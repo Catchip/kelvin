@@ -14,6 +14,9 @@ public interface ShopService {
     public int deleteDish(Integer dishId);
     public int deleteAllDish(Integer shopId);
     public int updateDishInfo(Dish dish);
+    public Shop getInfo(Integer shopId);
     public int putOnDish(Integer dishId);
     public int pullDownDish(Integer dishId);
+    public List<Shop> search(Shop shop);
+    public List<Dish> searchDish(Dish dish);
 }

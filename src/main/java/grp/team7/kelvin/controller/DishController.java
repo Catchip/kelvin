@@ -71,6 +71,14 @@ public class DishController {
         return result;
     }
 
+    @RequestMapping("/search")
+    public @ResponseBody String search(@RequestBody String data) {
+        Dish dish = JSONObject.parseObject(data, Dish.class);
+        List<Dish> dishes = shopService.searchDish(dish);
+        String result = JSON.toJSONString(dishes);
+        return result;
+    }
+
 
     @RequestMapping(value = "/edit")
     public @ResponseBody String editDish(@RequestBody String data) {

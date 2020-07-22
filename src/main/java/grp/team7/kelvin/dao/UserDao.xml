@@ -24,32 +24,33 @@
     <select id="findAll" resultType="grp.team7.kelvin.entity.User" >
         SELECT * FROM user
     </select>
-    <!--<select id="findByKeyword" resultType="grp.team7.kelvin.entity.User">-->
-        <!--SELECT-->
-            <!--*-->
-        <!--FROM-->
-            <!--user-->
-        <!--<where>-->
-            <!--<if test="userId != 0">-->
-                <!--user_id LIKE CONCAT('%', #{userId} ,'%')-->
-            <!--</if>-->
-            <!--<if test="userName != null">-->
-                <!--OR user_name LIKE CONCAT('%', #{userName} ,'%')-->
-            <!--</if>-->
-            <!--<if test="userSex != -1">-->
-                <!--OR user_sex LIKE CONCAT('%', #{userSex} ,'%')-->
-            <!--</if>-->
-            <!--<if test="userAccount != null">-->
-                <!--OR user_account LIKE CONCAT('%', #{userAccount} ,'%')-->
-            <!--</if>-->
-            <!--<if test="userMail != null">-->
-                <!--OR user_mail LIKE CONCAT('%', #{userMail} ,'%')-->
-            <!--</if>-->
-            <!--<if test="userTelephone != null">-->
-                <!--OR user_telephone LIKE CONCAT('%', #{userTelephone} ,'%')-->
-            <!--</if>-->
-        <!--</where>-->
-    <!--</select>-->
+
+    <select id="find" resultType="grp.team7.kelvin.entity.User">
+        SELECT
+            *
+        FROM
+            user
+        <where>
+            <if test="userId != 0">
+                user_id LIKE CONCAT('%', #{userId} ,'%')
+            </if>
+            <if test="userName != null">
+                OR user_name LIKE CONCAT('%', #{userName} ,'%')
+            </if>
+            <if test="userSex != -1">
+                OR user_sex LIKE CONCAT('%', #{userSex} ,'%')
+            </if>
+            <if test="userAccount != null">
+                OR user_account LIKE CONCAT('%', #{userAccount} ,'%')
+            </if>
+            <if test="userMail != null">
+                OR user_mail LIKE CONCAT('%', #{userMail} ,'%')
+            </if>
+            <if test="userTelephone != null">
+                OR user_telephone LIKE CONCAT('%', #{userTelephone} ,'%')
+            </if>
+        </where>
+    </select>
     
     <insert id="addUser" keyProperty="userId" useGeneratedKeys="true"
         parameterType="grp.team7.kelvin.entity.User">

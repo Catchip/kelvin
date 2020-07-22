@@ -34,6 +34,24 @@
         (#{shopName},#{userId},#{shopClass},#{shopAddress},#{shopPicture},#{shopTelephone},#{shopCreatetime},#{shopUpdatetime},#{shopStarttime},#{shopEndtime})
     </insert>
     
+    <select id="find" resultType="grp.team7.kelvin.entity.Shop">
+        SELECT
+            *
+        FROM
+            shop
+        <where>
+            <if test="shopId != null">
+                shop_id LIKE CONCAT('%', #{shopId} ,'%')
+            </if>
+            <if test="shopName != null">
+                OR shop_name LIKE CONCAT('%', #{shopName} ,'%')
+            </if>
+            <if test="shopClass != null">
+                OR shop_Class LIKE CONCAT('%', #{shopClass} ,'%')
+            </if>
+        </where>
+    </select>
+
     <update id="updateShop"
         parameterType="grp.team7.kelvin.entity.Shop">
         UPDATE shop

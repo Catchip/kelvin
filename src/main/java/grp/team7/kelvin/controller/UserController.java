@@ -1,5 +1,7 @@
 package grp.team7.kelvin.controller;
 
+import java.util.List;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
@@ -127,5 +129,20 @@ public class UserController {
 
         userService.updateUserRole(userId, role);
         return "OK";
+    }
+
+    @RequestMapping("/search")
+    public @ResponseBody String search(@RequestBody String data) {
+        User user = JSONObject.parseObject(data, User.class);
+        List<User> users = userService.search(user);
+        String  result = JSON.toJSONString(users);
+        return result;
+    }
+
+    @RequestMapping("/list")
+    public @ResponseBody String listAllUsers() {
+        List<User> users = userService.getAllUsers();
+        String  result = JSON.toJSONString(users);
+        return result;
     }
 }

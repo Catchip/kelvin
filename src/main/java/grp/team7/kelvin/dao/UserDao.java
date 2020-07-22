@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Param;
 * UserDao
 */
 public interface UserDao {
+    public List<User> find(User user);
     public User findById(Integer id);
     public User findByAccount(String userAccount);
     public int addUser(User user);

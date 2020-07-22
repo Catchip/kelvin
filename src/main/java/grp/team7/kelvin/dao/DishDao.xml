@@ -46,6 +46,24 @@
         WHERE class = #{dishClass} AND shopid = #{shopId}
     </select>
     
+    <select id="find" resultType="grp.team7.kelvin.entity.Dish">
+        SELECT
+            *
+        FROM
+            dish
+        <where>
+            <if test="dishId != 0">
+                dish_id LIKE CONCAT('%', #{dishId} ,'%')
+            </if>
+            <if test="dishName != null">
+                OR dish_name LIKE CONCAT('%', #{dishName} ,'%')
+            </if>
+            <if test="dishClass != null">
+                OR dishClass LIKE CONCAT('%', #{dishClass} ,'%')
+            </if>
+        </where>
+    </select>
+
     <insert id="addDish" keyProperty="dishId" useGeneratedKeys="true"
         parameterType="grp.team7.kelvin.entity.Dish">
         INSERT INTO 
