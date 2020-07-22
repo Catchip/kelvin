@@ -92,7 +92,7 @@
         money = #{money},
         </if>
         <if test="isConsumed != null">
-        isconsumed = #{isConsumed},
+        is_consumed = #{isConsumed},
         </if>
         </set>
         WHERE order_id = #{orderId}

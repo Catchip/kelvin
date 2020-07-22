@@ -6,13 +6,16 @@ import org.springframework.stereotype.Service;
 import grp.team7.kelvin.service.OrderService;
 import grp.team7.kelvin.dao.DishDao;
 import grp.team7.kelvin.dao.OrderItemDao;
+import grp.team7.kelvin.dao.OrderDao;
 import grp.team7.kelvin.entity.OrderItem;
 import grp.team7.kelvin.entity.Dish;
+import grp.team7.kelvin.entity.Order;
 
 import java.util.List;
 import java.util.ListIterator;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
 
 @Service
 public class OrderServiceImp implements OrderService {
@@ -21,6 +24,9 @@ public class OrderServiceImp implements OrderService {
 
     @Autowired
     DishDao dishDao;
+
+    @Autowired
+    OrderDao orderDao;
 
     @Override
     public List<OrderItem> getOrderItems(Integer orderId) {
@@ -48,8 +54,22 @@ public class OrderServiceImp implements OrderService {
         return 1;
     }
 
+    @Override
     public int deleteOrderItem(Integer orderId, Integer dishId) {
         return orderitemdao.delete(orderId, dishId);
+    }
+
+    @Override
+    public Order check(String uuid) {
+        return orderDao.findByUUID(uuid);
+    }
+
+    @Override
+    public int consume(Order order) {
+        boolean a = true;
+        Boolean b = new Boolean(a);
+        order.setIsConsumed(b);
+        return orderDao.updateOrder(order);
     }
 
 

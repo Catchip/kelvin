@@ -15,7 +15,7 @@ public interface OrderDao {
     public Order findByKeys(Integer shopId, Integer dishId);
     public List<Order> findByShop(Integer shopId);
     public List<Order> findAll();
-    public Order findByUUID(String UUID);
+    public Order findByUUID(String uuid);
     public int updateOrder(Order order);
     public int addOrder(Order order);
     public int deleteOrder(Integer orderId);

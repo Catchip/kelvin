@@ -31,7 +31,12 @@ public class Order {
     public Order() {
 
     }
-
+    public Boolean getIsConsumed() {
+        return isConsumed;
+    }
+    public void setIsConsumed(Boolean isConsumed) {
+        this.isConsumed = isConsumed;
+    }
     public Integer getOrderId() {
         return orderId;
     }

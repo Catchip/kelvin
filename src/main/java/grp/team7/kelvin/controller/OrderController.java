@@ -90,4 +90,33 @@ public class OrderController {
         String result = JSON.toJSONString(orders);
         return result;
     }
+
+    @RequestMapping("/checkorder")
+    public @ResponseBody String checkOrder(@RequestBody String data) {
+        JSONObject jsonObject = JSONObject.parseObject(data);
+        String uuid = jsonObject.getString("uuid");
+        Integer shopId = jsonObject.getInteger("shopId");
+        Order order = orderService.check(uuid);
+        if (order == null) {
+            return "uuid无效,订单不存在";
+        }
+        if (order.getShopId() != shopId) {
+            return "该订单不属于这个店铺";
+        } else if (order.getIsConsumed()) {
+            return "订单已消费";
+        } else {
+            return JSON.toJSONString(order);
+        }
+    }
+
+    @RequestMapping("/consume")
+    public @ResponseBody String consumeOrder(@RequestBody String data) {
+        Order order = JSONObject.parseObject(data, Order.class);
+        int flag = orderService.consume(order);
+        if (flag == 1) {
+            return "OK";
+        } else {
+            return "NOT OK";
+        }
+    }
 }

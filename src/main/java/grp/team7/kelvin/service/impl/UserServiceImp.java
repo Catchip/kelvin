@@ -89,8 +89,9 @@ public class UserServiceImp implements UserService {
     @Override
     public Order addOrder(Order order) {
         //生成UUID
-        //String uuid = "sdfsd";
-        //order.setUuid(uuid);
+        boolean a = false;
+        Boolean b = new Boolean(a);
+        order.setIsConsumed(b);
         order.setUuid(UUID.randomUUID().toString());
         if (orderDao.addOrder(order) == 1) {
             Integer orderId = orderDao.lastInsertId();
