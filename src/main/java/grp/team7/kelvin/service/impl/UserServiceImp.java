@@ -156,6 +156,11 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    public List<Order>  searchOrder(Order order) {
+        return orderDao.find(order);
+    }
+
+    @Override
     public List<User>  getAllUsers() {
         return userDao.findAll();
     }

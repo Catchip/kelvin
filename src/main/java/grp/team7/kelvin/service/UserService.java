@@ -15,6 +15,7 @@ public interface UserService {
     public int addShop(Shop shop);
     public int deleteShop(Integer shopId);
     public Order addOrder(Order order);
+    public List<Order> searchOrder(Order order);
 
     /**
      * 获得用户的管理员身份

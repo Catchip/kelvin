@@ -82,4 +82,12 @@ public class OrderController {
         userService.deleteOrder(orderId);
         return "OK";
     }
+
+    @RequestMapping("/search")
+    public @ResponseBody String searchOrder(@RequestBody String data) {
+        Order order = JSONObject.parseObject(data, Order.class);
+        List<Order> orders = userService.searchOrder(order);
+        String result = JSON.toJSONString(orders);
+        return result;
+    }
 }

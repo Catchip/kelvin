@@ -9,6 +9,7 @@ import java.util.List;
 */
 public interface OrderDao {
 
+    public List<Order> find(Order order);
     public List<Order> findByUser(Integer userId);
     public Order findById(Integer orderId);
     public Order findByKeys(Integer shopId, Integer dishId);

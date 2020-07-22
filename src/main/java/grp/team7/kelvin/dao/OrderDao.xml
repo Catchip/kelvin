@@ -34,6 +34,17 @@
         WHERE uuid = #{uuid}
     </select>
 
+    <select id="find" resultType="grp.team7.kelvin.entity.Order">
+        SELECT
+            *
+        FROM
+            order
+        <where>
+            <if test="orderId != 0">
+                order_id LIKE CONCAT('%', #{userId} ,'%')
+            </if>
+        </where>
+    </select>
     <select id="findById" parameterType="java.lang.Integer"
         resultType="grp.team7.kelvin.entity.Order">
         SELECT

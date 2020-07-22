@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +33,6 @@ public class PictureController {
     @RequestMapping("/upload")
     @CrossOrigin(origins = "*")
     public @ResponseBody String upload(@RequestParam("picture") MultipartFile picture, HttpServletRequest request) {
-        System.out.println("表现层在执行上传图片");
         //获取文件在服务器的储存位置
         String path = request.getSession().getServletContext().getRealPath("/front/res/pictures");
         File filePath = new File(path);
