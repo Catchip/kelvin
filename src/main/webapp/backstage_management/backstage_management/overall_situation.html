@@ -6,6 +6,8 @@
 	<link rel="stylesheet" href="../css/reset.css" />
 	<link rel="stylesheet" href="../css/content.css" />
 	<link type="text/css" rel="stylesheet" href="../css/styles.css" />
+	<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/menu.js"></script>
 </head>
 <body marginwidth="0" marginheight="0">
 	<div class="container">
@@ -89,21 +91,21 @@
 						<!-- Unnamed (矩形) -->
 						<div id="u184">
 							<div id="u184_text">
-								<p><span>1</span></p>
+								<p><span class="user"></span></p>
 							</div>
 						</div>
 						
 						<!-- Unnamed (矩形) -->
 						<div id="u185">
 							<div id="u185_text">
-								<p><span>3</span></p>
+								<p><span class="shop"></span></p>
 							</div>
 						</div>
 						
 						<!-- Unnamed (矩形) -->
 						<div id="u186">
 							<div id="u186_text">
-								<p><span>5</span></p>
+								<p><span class="category"></span></p>
 							</div>
 						</div>
 						
@@ -127,3 +129,57 @@
 	</div>
 </body>
 </html>
+<script>
+	function fresh_user(){
+		var url="http://nightmorning.site:23080/kelvin/user/search";
+		var datas={"userAccount":""};//模糊匹配所有结果
+		var ds=JSON.stringify(datas);
+		$.ajaxSetup({
+            async: true,
+            contentType: "application/json"
+        });
+        var jqxhr = $.post(url, ds, function(data, status) {
+                console.log("数据：" + data + "\n状态：" + status);
+                console.log(data);
+                $("span.user")[0].innerText=data.length;
+           })
+		
+	}
+	fresh_user()
+</script>
+<script>
+	function fresh_shop(){
+		var url="http://nightmorning.site:23080/kelvin/shop/list?userid=";
+		var datas={"userid":""};//模糊匹配所有结果
+		var ds=JSON.stringify(datas);
+		$.ajaxSetup({
+            async: true,
+            contentType: "application/json"
+        });
+        var jqxhr = $.post(url, function(data, status) {
+                console.log("数据：" + data + "\n状态：" + status);
+                console.log(data);
+                $("span.shop")[0].innerText=data.length;
+           })
+		
+	}
+	fresh_shop()
+</script>
+<script>
+	function fresh_dish(){
+		var url="http://nightmorning.site:23080/kelvin/dish/list?shopid";
+		var datas={"dishid":""};//模糊匹配所有结果
+		var ds=JSON.stringify(datas);
+		$.ajaxSetup({
+            async: true,
+            contentType: "application/json"
+        });
+        var jqxhr = $.post(url, function(data, status) {
+                console.log("数据：" + data + "\n状态：" + status);
+                console.log(data);
+                $("span.category")[0].innerText=data.length;
+           })
+		
+	}
+	fresh_dish()
+</script>
