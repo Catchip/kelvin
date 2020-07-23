@@ -1,0 +1,108 @@
+e!DOCTYPE>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开饭了后台管理系统</title>
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/menu.js"></script>
+</head>
+
+<body>
+    <div class="top"></div>
+    <div id="header">
+        <div class="logo">
+            <img src="../images/logo.png" height="80px" alt="" style="vertical-align: middle; float: left;" />
+            <a href="../index.html" style="font-size: 30px; color: #fff; float: left;height: 70px;">开饭了后台管理系统</a>
+
+        </div>
+
+        <div class="navigation">
+            <ul>
+                <li>欢迎您！</li>
+                <li><a href="register.html">注册</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="loginwarrp">
+            <div class="log">管理员登录</div>
+            <div class="login_form">
+                <form id="Login" name="Login" method="post" action="">
+                    <li class="login-item">
+                        <span>用户名：</span>
+                        <input id="uname" type="text" name="UserName" class="login_input" required="required">
+                    </li>
+                    <li class="login-item">
+                        <span>密　码：</span>
+                        <input id="pwd" type="password" name="password" class="login_input" required="required">
+                    </li>
+                    <!--<li class="login-item verify">
+                        <span>验证码：</span>
+                        <input type="text" name="CheckCode" class="login_input verify_input" required="required">
+                    </li>
+                    <img src="../images/verify.PNG" border="0" class="verifyimg" />-->
+                    <div class="clearfix"></div>
+                    <li class="login-sub">
+                        <!--<input type="submit" name="Submit" value="登录" />-->
+                        <button id="sub" type="submit" class="submit_button" name="Submit" onclick="postInfo()">
+                            登录
+                        </button>
+                    </li>
+                    <div class="login-foget"><a href="change_password.html">忘记密码</a></div>
+                    <!--
+				<li class="login-foget">
+					<a href="change_password.html" style="color: #000000;">忘记密码</a>
+				</li> 
+				-->
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom"></div>
+    <!--<div id="footer"><p>Copyright©  2015 版权所有 京ICP备05019125号-10  来源:<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p></div>-->
+    <script>
+        navList(12);
+    </script>
+</body>
+
+</html>
+<script>
+    function postInfo() {
+        var url = "http://nightmorning.site:23080/kelvin/user/login"
+        var uname = document.getElementById("uname").value;
+        var pwd = document.getElementById("pwd").value;
+        var jsondata = {
+            "userAccount": uname,
+            "userPassword": pwd
+        };
+        jd = JSON.stringify(jsondata);
+        console.log(jd);
+        /*var jqxhr = $.post(url, jsondata, function(){alert("success");})*/
+
+
+        $.ajaxSetup({
+            async: false,
+            contentType: "application/json"
+        });
+
+        var jqxhr = $.post(url, jd, function(data, status) {
+                console.log("数据：" + data + "\n状态：" + status);
+            })
+            .done(function() {
+                console.log("second success");
+                window.location.href = "../index.html";
+            })
+            .fail(function() {
+                alert("error");
+            })
+    }
+</script>

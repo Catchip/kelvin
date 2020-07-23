@@ -1,0 +1,101 @@
+<!DOCTYPE >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>员工管理</title>
+<style type="text/css">
+.titlee{
+text-align:left;
+font-size:16px;
+background:#CCC;
+font-weight:400;}
+table{
+text-align:left;
+}
+</style>
+<script type="text/javascript">
+function add(){
+var nowRows=document.getElementById("mytable").rows;
+var rows1=nowRows.length-1;
+var table1=document.getElementById("mytable").insertRow(rows1);
+
+var addRow1=table1.insertCell(0);
+addRow1.innerHTML="<input type='text' id='Num"+rows1+"' placeholder='序号' />";
+var addRow1=table1.insertCell(1);
+addRow1.innerHTML="<input type='text' id='W_num"+rows1+"' placeholder='工号' />";
+var addRow1=table1.insertCell(2);
+addRow1.innerHTML="<input type='text' id='password"+rows1+"' placeholder='密码' />";
+var addRow1=table1.insertCell(3);
+addRow1.innerHTML="<input type='text' id='name"+rows1+"' placeholder='姓名' />";
+var addRow1=table1.insertCell(4);
+addRow1.innerHTML="<input type='text' id='level"+rows1+"' placeholder='级别' />";
+var addRow1=table1.insertCell(5);
+addRow1.innerHTML="<input type='button' value='删除' onclick='del(this)'/><input type='button' value='确定' onclick='sure(this)'/>";
+}
+
+function del(tt){
+var table2=document.getElementById("mytable");
+table2.deleteRow(tt.parentNode.parentNode.rowIndex);
+}
+
+function sure(su){
+var table4=document.getElementById("mytable").rows;
+var rowss=su.parentNode.parentNode.rowIndex;
+var cellss=table4[rowss].cells[4];
+cellss.innerHTML=document.getElementById("level"+rowss).value;
+var cellss=table4[rowss].cells[3];
+cellss.innerHTML=document.getElementById("name"+rowss).value;
+var cellss=table4[rowss].cells[2];
+cellss.innerHTML=document.getElementById("password"+rowss).value;
+var cellss=table4[rowss].cells[1];
+cellss.innerHTML=document.getElementById("W_num"+rowss).value;
+var cellss2=table4[rowss].cells[0];
+cellss2.innerHTML=document.getElementById("Num"+rowss).value;
+
+var tableCell1=su.parentNode;
+tableCell1.innerHTML="<input type='button' value='删除' onclick='del(this)'/><input type='button' value='修改' onclick='change(this)'/>";
+}
+
+
+function change(ch){
+var table3=document.getElementById("mytable").rows;
+var rowss=ch.parentNode.parentNode.rowIndex;
+
+var cellss2=table3[rowss].cells[4];
+var oldR2=cellss2.innerHTML;
+cellss2.innerHTML="<input type='text' id='level"+rowss+"' value='' />";
+document.getElementById("level"+rowss).value=oldR2;
+
+var cellss=table3[rowss].cells[3];
+var oldR=cellss.innerHTML;
+cellss.innerHTML="<input type='text' id='name"+rowss+"' value='' />";
+document.getElementById("name"+rowss).value=oldR;
+
+var cellss=table3[rowss].cells[2];
+var oldR=cellss.innerHTML;
+cellss.innerHTML="<input type='text' id='password"+rowss+"' value='' />";
+document.getElementById("password"+rowss).value=oldR;
+
+var cellss=table3[rowss].cells[1];
+var oldR=cellss.innerHTML;
+cellss.innerHTML="<input type='text' id='W_num"+rowss+"' value='' />";
+document.getElementById("W_num"+rowss).value=oldR;
+
+var cellss2=table3[rowss].cells[0];
+var oldR2=cellss2.innerHTML;
+cellss2.innerHTML="<input type='text' id='Num"+rowss+"' value='' />";
+document.getElementById("Num"+rowss).value=oldR2;
+
+var tableCell1=ch.parentNode;
+tableCell1.innerHTML="<input type='button' value='删除' onclick='del(this)'/><input type='button' value='确定' onclick='sure(this)' />";
+}
+</script>
+</head>
+
+
+<body>
+<table id="mytable" border="1" align="center" cellspacing="0" style="width:960px;margin:0 auto; table-layout:fixed">
+<tr class="titlee"><td>序号</td><td>工号</td><td>密码</td><td>姓名</td><td>权限</td><td>操作</td></tr>
+				<tr><td>001</td><td>217123456</td><td>sb123321</td><td>张三</td><td>二级</td><td><input type="button" value="删除" / onclick="del(this)"><input type="button" value="修改"onclick="change(this)" /></td></tr>
+<tr><td colspan="6" align="center"><input type="button" value="新增员工" / onclick="add()"></td></tr>
+</table>
