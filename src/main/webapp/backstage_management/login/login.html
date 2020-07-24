@@ -104,10 +104,12 @@ e!DOCTYPE>
                 } else {
                     sessionStorage.setItem("userId", result.userId);
                     sessionStorage.setItem("userName", result.userName);
-                    if (result.role != null) {
+                    if (result.role != null && result.role > 0) {
                         sessionStorage.setItem("userRole", result.role);
+                        window.location.href = "../index.html"
+                    } else{
+                        alert("您不是管理员");
                     }
-                    window.location.href = "../index.html"
                 }
             })
             .fail(function() {
