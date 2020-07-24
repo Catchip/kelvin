@@ -43,4 +43,9 @@ public interface UserService {
 
     public List<User> search(User user);
     public List<User> getAllUsers();
+
+    /**
+     * 删除用户
+     */
+    public int deleteUser(int userId);
 }

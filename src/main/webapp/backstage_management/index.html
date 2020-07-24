@@ -1,11 +1,12 @@
 <!DOCTYPE>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>开饭了后台管理系统</title>
-<link type="text/css" rel="stylesheet" href="css/style.css" />
-<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="js/menu.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>开饭了后台管理系统</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
 </head>
 
 <body>
@@ -20,7 +21,7 @@
 	<div class="navigation">
 		<ul>
 		 	<li><a href="login/welcome.html" target="content">欢迎您！</li>
-			<li><a href="login/personal_information.html" target="content">张山</a></li>
+			<li><a href="login/personal_information.html" target="content" id="userName"></a></li>
 			<li><a href="login/change_password.html">修改密码</a></li>
 			<li><a href="">设置</a></li>
 			<a href = "javascript:void(0);" onclick ="clear-sessionStorage()">退出</a>
@@ -116,37 +117,40 @@
 			</div>
 		</div>
 		-->
-		<!-- 右侧内容展示部分 -->
-		<div class="iframe-content">
-		<iframe name="content" src="welcome.html" frameborder="0" id="mainframe" scrolling="yes"  marginheight="0" marginwidth="0" width="100%" style="height: 700px; background-color: #F6F6F6;"></iframe>
-		</div>
-</div>
-<div class="bottom">
-	
-</div>
-<div id="footer">
-	<p>
-	<!--<div class="footer-navigation">-->
-	<!--<ul>
+        <!-- 右侧内容展示部分 -->
+        <div class="iframe-content">
+            <iframe name="content" src="welcome.html" frameborder="0" id="mainframe" scrolling="yes" marginheight="0" marginwidth="0" width="100%" style="height: 700px; background-color: #F6F6F6;"></iframe>
+        </div>
+    </div>
+    <div class="bottom">
+
+    </div>
+    <div id="footer">
+        <p>
+            <!--<div class="footer-navigation">-->
+            <!--<ul>
 	 	
 		<li><a href="" target="content">| 关于开饭了 |</a></li>
 		<li><a href="bottom/service_agreement.html" target="content">| 服务协议 |</a></li>
 		<li><a href="">| 开饭了客服 |</a></li>
 		<li><a href="login/login.html">| 侵权投诉 |</a></li>
 	</ul>-->
-	
-		<a href="" >| 关于开饭了 |</a>
-		<a href="bottom/service_agreement.html" target="content">| 服务协议 |</a>
-		<a href="">| 开饭了客服 |</a>
-		<a href="login/login.html">| 侵权投诉 |</a>
-		<br>
-		Copyright©  2020 版权所有 京ICP备0000000号-10  来源:
-		<a href="http://www.mycodes.net/" target="_blank">开饭了项目</a>
-	</p>
-	<!--<p>Copyright©  2020 版权所有 京ICP备0000000号-10  来源:<a href="http://www.mycodes.net/" target="_blank">开饭了项目</a></p>-->
-</div>
-<script>navList(12);</script>
+
+            <a href="">| 关于开饭了 |</a>
+            <a href="bottom/service_agreement.html" target="content">| 服务协议 |</a>
+            <a href="">| 开饭了客服 |</a>
+            <a href="login/login.html">| 侵权投诉 |</a>
+            <br>
+            Copyright© 2020 版权所有 京ICP备0000000号-10 来源:
+            <a href="http://www.mycodes.net/" target="_blank">开饭了项目</a>
+        </p>
+        <!--<p>Copyright©  2020 版权所有 京ICP备0000000号-10  来源:<a href="http://www.mycodes.net/" target="_blank">开饭了项目</a></p>-->
+    </div>
+    <script>
+        navList(12);
+    </script>
 </body>
+
 </html>
 <script>
 	function role(){

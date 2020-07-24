@@ -27,6 +27,7 @@
 
     <!-- 设置不过滤的静态资源 -->
     <mvc:resources mapping="/front/**" location="/front/" />
+    <mvc:resources mapping="/backstage_management/**" location="/backstage_management/" />
     <!--<mvc:resources mapping="/img/**" location="/img/" />-->
     <!--<mvc:resources mapping="/plugins/**" location="/plugins/" />-->
     <!--<mvc:resources mapping="/js/**" location="/js/" />-->

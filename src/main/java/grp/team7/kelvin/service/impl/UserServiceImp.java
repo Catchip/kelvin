@@ -165,4 +165,9 @@ public class UserServiceImp implements UserService {
     public List<User>  getAllUsers() {
         return userDao.findAll();
     }
+
+    @Override
+    public int deleteUser(int id) {
+        return userDao.deleteUser(id);
+    }
 }
