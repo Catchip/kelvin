@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import grp.team7.kelvin.service.impl.UserServiceImp;
@@ -144,5 +145,11 @@ public class UserController {
         List<User> users = userService.getAllUsers();
         String  result = JSON.toJSONString(users);
         return result;
+    }
+
+    @RequestMapping("/delete")
+    public @ResponseBody String deleteUser(@RequestParam(value = "userId") int userId) {
+        userService.deleteUser(userId);
+        return "OK";
     }
 }
