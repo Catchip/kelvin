@@ -50,7 +50,7 @@ e!DOCTYPE>
                     <div class="clearfix"></div>
                     <li class="login-sub">
                         <!--<input type="submit" name="Submit" value="登录" />-->
-                        <button id="sub" type="submit" class="submit_button" name="Submit" onclick="postInfo()">
+                        <button id="sub" type="button" class="submit_button" name="Submit" onclick="postInfo()">
                             登录
                         </button>
                     </li>
@@ -89,19 +89,26 @@ e!DOCTYPE>
 
 
         $.ajaxSetup({
-            async: false,
+            async: true,
             contentType: "application/json"
         });
-
+		var result;
         var jqxhr = $.post(url, jd, function(data, status) {
                 console.log("数据：" + data + "\n状态：" + status);
+                result=data;
             })
             .done(function() {
-                console.log("second success");
-                window.location.href = "../index.html";
+                console.log(result);
+                if(result == ""){
+                		alert("用户名或密码错误");
+                }
+                else{
+                		sessionStorage.setItem("userName","result.userName");
+                		//window.location.href = "../index.html";
+                }
             })
             .fail(function() {
-                alert("error");
+                alert("network error");
             })
     }
 </script>
