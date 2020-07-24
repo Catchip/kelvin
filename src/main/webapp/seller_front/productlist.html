@@ -1,0 +1,259 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>开饭了商家端——商品列表</title>
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+<link type="text/css" rel="stylesheet" href="file/productlist/styles.css" />
+<script type="text/javascript" src="js/dictionary.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/menu.js"></script>
+
+</head>
+
+<body>
+<div class="top"></div>
+<div id="header">
+	<div class="logo" >
+		<img src="images/logo.png" height="80px" alt="" style="vertical-align: middle; float: left;" />
+		<a href="index.html" style="font-size: 30px; color: #fff; float: left;height: 70px;">开饭了</a>
+		
+	</div>
+	
+	<div class="navigation">
+		<ul>
+		 	<li>欢迎您！</li>
+			<li>毛毛餐厅</li>
+			<li><a href="intro.html">个人中心</a></li>
+			<li><a href="login.html">退出</a></li>
+		</ul>
+	</div>
+</div>
+<div id="content">
+	<div class="left_menu">
+				<ul id="nav_dot">
+      <li>
+          <h4 class="M1"><span></span>首页</h4>
+          <div class="list-item none">
+            <a href='mainpage.html'>首页</a>
+            <a href='intro.html'>账号整体情况</a>           
+           </div>
+        </li>
+        <li>
+          <h4 class="M10"><span></span>我的资料</h4>
+          <div class="list-item none">
+            <a href='selfintro.html'>个人资料</a>
+                
+           </div>
+        </li>
+        <li>
+          <h4 class="M7"><span></span>我的店铺</h4>
+          <div class="list-item none">
+            <a href='shoplist.html'>店铺列表</a>
+          
+          </div>
+        </li>
+				<li>
+          <h4 class="M9"><span></span>我的商品</h4>
+          <div class="list-item none">
+            <a href='productlist.html'>商品列表</a>
+         
+          </div>
+        </li>
+				<li>
+          <h4 class="M2"><span></span>我的卖单</h4>
+          <div class="list-item none">
+            <a href='salelist.html'>卖单列表</a>
+          </div>
+        </li>
+				<li>
+          <h4  class="M6"><span></span>订单验证</h4>
+          <div class="list-item none">
+            <a href='verify.html'>订单验证</a>
+          </div>
+        </li>
+
+
+  </ul>
+		</div>
+		<div class="m-right">
+			<div class="right-nav">
+					<ul>
+							
+								<li style="margin-left:25px;">您当前的位置：</li>
+								<li>首页</li>
+								<li>></li>
+								<li>商品列表</li>
+						</ul>
+			</div>
+			<div class="main">
+				<div id="div_indicidual_2" style="font-size: 25px;margin-left: 75px ;margin-top: 30px; color: 333333;">
+					商品列表
+				</div>
+				<div style="margin-left:25px;margin-top: 25px;">
+					<div style="margin-left: 0;float: left;">
+					<form style="font-size: 18px">
+						商家名：<select name="SEL" style="font-size: 18px" onchange="Show(this.value)">
+							<option value="">选择</option>
+							<option value="0">毛毛商店</option>
+							<option value="1">文文便利店</option>
+						</select>
+					</form>
+					</div>
+					<div style="float: right;">
+						<INPUT placeholder="查找..." NAME="user_pass" TYPE="text" style="font-size: 18px;" οnmοuseοver="this.style.borderColor='black';this.style.backgroundColor='plum'" style="width: 106; height: 21" οnmοuseοut="this.style.borderColor='black';this.style.backgroundColor='#ffffff'" style="border-width:1px;border-color=black">
+						<input type="button" value="搜索" / onclick="search(this)" style="font-size: 18px;">	
+					</div>
+				</div>
+
+				
+				<div id="Tabb0" style="display:none;">
+				<table name="Tabs" id="Tab0" border="1" cellspacing="0" style="font-size:20px;margin-top:25px;margin-left:100px; width: 80%;text-align: center;table-layout: auto;">
+					<tr class="titlee">
+						<td>序号</td>
+						<td>商品名称</td>
+						<td>商品价值</td>
+						<td>商品状态</td>
+						
+						<td>操作</td>
+					</tr>
+					<tr>
+						<td>001</td>
+						<td>红烧狮子头</td>
+						<td>￥30</td>
+						<td>上架</td>
+						
+						<td>
+							<input type="button" value="删除" / onclick="del(this,0)">
+							<input type="button" value="修改" onclick="change(this,0)">
+						</td>
+					</tr>
+					<tr>
+						<td>002</td>
+						<td>糖醋里脊</td>
+						<td>￥30</td>
+						<td>上架</td>
+						
+						<td>
+							<input type="button" value="删除" / onclick="del(this,0)">
+							<input type="button" value="修改" onclick="change(this,0)">
+						</td>
+					</tr>
+					<tr>
+						<td>003</td>
+						<td>椒盐蘑菇</td>
+						<td>￥40</td>
+						<td>下架</td>
+				
+						<td>
+							<input type="button" value="删除" / onclick="del(this,0)">
+							<input type="button" value="修改" onclick="change(this,0)">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5" align="center">
+							<input type="button" value="增加商品" / onclick="add(0)">
+						</td>
+					</tr>
+				</table>
+				<form action="" method="get" style="text-align: center;">
+				
+					<a href="">首页</a>
+					<a href="">上一页</a>
+					<a href="">下一页</a>
+					第<span style="color:red;font-weight:600">1</span>页 共
+					<span style="color:red;font-weight:600">80</span>页
+					<input type="text" class="page-input">
+					<input type="submit" class="page-btn" value="跳转">
+				</form>
+				</div>
+				<div id="Tabb1" style="display:none;">
+				<table id="Tab1" border="1" cellspacing="0" style="font-size:20px;margin-top:25px;margin-left:100px; width: 80%; text-align: center; ">
+					<tr class="titlee">
+						<td>序号</td>
+						<td>商品名称</td>
+						<td>商品价值</td>
+						<td>商品状态</td>
+						
+						<td>操作</td>
+					</tr>
+					<tr>
+						<td>001</td>
+						<td>文文家常菜</td>
+						<td>￥20</td>
+						<td>上架</td>
+						
+						<td>
+							<input type="button" value="删除" / onclick="del(this,1)">
+							<input type="button" value="修改" onclick="change(this,1)">
+						</td>
+					</tr>
+					<tr>
+						<td>002</td>
+						<td>文文回锅肉</td>
+						<td>￥10</td>
+						<td>上架</td>
+					
+						<td>
+							<input type="button" value="删除" / onclick="del(this,1)">
+							<input type="button" value="修改" onclick="change(this,1)">
+						</td>
+					</tr>
+					<tr>
+						<td>003</td>
+						<td>香辣虾</td>
+						<td>￥70</td>
+						<td>上架</td>
+						
+						<td>
+							<input type="button" value="删除" / onclick="del(this,1)">
+							<input type="button" value="修改" onclick="change(this,1)">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5" align="center">
+							<input type="button" value="增加商品" / onclick="add(1)">
+						</td>
+					</tr>
+				</table>
+				<form action="" method="get" style="text-align: center;">
+				
+					<a href="">首页</a>
+					<a href="">上一页</a>
+					<a href="">下一页</a>
+					第<span style="color:red;font-weight:600">1</span>页 共
+					<span style="color:red;font-weight:600">80</span>页
+					<input type="text" class="page-input">
+					<input type="submit" class="page-btn" value="跳转">
+				</form>
+				</div>
+			</div>
+		</div>
+</div>
+<div class="bottom"></div>
+<div id="footer">
+	<p>
+		关于开饭了     |   服务协议      |    用户中心     |  开饭了客服     |   投诉中心
+	</br>
+		Copyright © 2012-2020 Kaifan. All Rights Reserved.
+	
+	</p>
+	
+
+</div>
+<script language="javascript">
+function Show(id)
+{
+
+for(var i=0;i<2;i++)
+{
+document.getElementById("Tabb"+i).style.display="none";
+}
+if(id!="" && !isNaN(id)){
+document.getElementById("Tabb"+id).style.display="";
+}
+}
+</script>
+<script>navList(12);</script>
+</body>
+</html>
