@@ -24,7 +24,7 @@
                 <li><a href="login/personal_information.html" target="content" id="userName"></a></li>
                 <li><a href="login/change_password.html">修改密码</a></li>
                 <li><a href="">设置</a></li>
-                <li><a href="login/login.html">退出</a></li>
+                <a href="javascript:void(0);" onclick="clear_sessionStorage()">退出</a>
             </ul>
         </div>
     </div>
@@ -64,7 +64,6 @@
                     <div class="list-item none">
                         <a href="product_management/product_management.html" target="content">商品详情</a>
 
-
                     </div>
                 </li>
 
@@ -80,7 +79,7 @@
                 <li>
                     <h4 class="M5"><span></span>员工管理</h4>
                     <div class="list-item none">
-                        <a href="staff_management/staff_management.html" target="content">员工详情</a>
+                        <a href="#" onclick="role();return false;" target="content">用户详情</a>
 
 
                     </div>
@@ -153,3 +152,25 @@
 </body>
 
 </html>
+<script>
+    function role() {
+        var userRole = sessionStorage.getItem("userRole");
+        if (userRole > 1) {
+            self.location = "staff_management/staff_management.html";
+        } else {
+            alert("没有权限");
+        }
+    }
+</script>
+<script>
+    function clear_sessionStorage() {
+        sessionStorage.clear();
+        window.location.href = "login/login.html";
+    }
+</script>
+<script>
+    function set_userName(){
+        $("#userName")[0].innerText=sessionStorage.getItem("userName");
+    }
+    set_userName()
+</script>
