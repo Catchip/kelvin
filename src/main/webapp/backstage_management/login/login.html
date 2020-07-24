@@ -103,6 +103,7 @@ e!DOCTYPE>
                     alert("用户名或密码错误");
                 } else {
                     sessionStorage.setItem("userId", result.userId);
+                    sessionStorage.setItem("userName", result.userName);
                     if (result.role != null) {
                         sessionStorage.setItem("userRole", result.role);
                     }
